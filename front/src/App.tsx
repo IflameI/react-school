@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router';
 
-import { HeaderCutstom, MainContent } from './components';
+import { Header, MainContent } from './components';
 
 function App() {
   return (
     <>
-      <HeaderCutstom />
+      <Header />
       <Routes>
         <Route path='/' element={<MainContent />} />
       </Routes>

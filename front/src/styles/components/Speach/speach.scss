@@ -1,0 +1,60 @@
+.speach {
+  background: url('../../../assets/img/speach/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  &__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 -50px;
+  }
+  &__column {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%;
+    padding: 0 50px;
+  }
+  &__item {
+    background-color: #147fc3;
+    padding: 70px;
+    color: #ffffff;
+    height: 100%;
+    @media (max-width: 550px) {
+      padding: 50px;
+    }
+    @media (max-width: 450px) {
+      padding: 30px;
+    }
+  }
+  &__title {
+    font-size: 30px;
+    margin-bottom: 25px;
+    line-height: 40px;
+    position: relative;
+    &:before {
+      content: '“';
+      position: absolute;
+      opacity: 0.2;
+      color: #ffffff;
+      font-size: 100px;
+      font-weight: 900;
+      top: 0;
+      left: -22px;
+    }
+  }
+  &__text {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 40px;
+  }
+  &__name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  &__proffesion {
+    font-size: 16px;
+  }
+}

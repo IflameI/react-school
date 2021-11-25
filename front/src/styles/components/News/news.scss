@@ -1,0 +1,117 @@
+.news {
+  &__header {
+    padding-top: 70px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 40px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  &__title {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+  }
+  &__all {
+    font-size: 16px;
+    text-transform: uppercase;
+    a {
+      color: #147fc3;
+      font-weight: 600;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  &__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 -40px;
+    @media (max-width: 991.98px) {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+  }
+  &__column {
+    padding: 0 40px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%;
+    @media (max-width: 991.98px) {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 1 100%;
+      flex: 0 1 100%;
+      padding-bottom: 30px;
+    }
+    &:last-child {
+      @media (max-width: 991.98px) {
+        padding-bottom: 0;
+      }
+    }
+  }
+  &__item {
+    background: #fff;
+    -webkit-box-shadow: 0 2px 8px rgba(55, 55, 55, 0.4);
+    box-shadow: 0 2px 8px rgba(55, 55, 55, 0.4);
+    display: block;
+    img {
+      max-width: 100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+      @media (max-width: 991.98px) {
+        width: 100%;
+      }
+    }
+  }
+  &__info {
+    padding: 30px 80px 50px 50px;
+    @media (max-width: 991.98px) {
+      padding: 20px 30px 30px 10px;
+    }
+  }
+  &__subtitle {
+    color: #147fc3;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 20px;
+    display: block;
+    &:hover {
+      -webkit-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+      text-decoration: underline;
+    }
+    @media (max-width: 991.98px) {
+      margin-bottom: 10px;
+    }
+  }
+  &__text {
+    margin-bottom: 20px;
+    color: #000000;
+    font-size: 15px;
+    line-height: 22px;
+    @media (max-width: 991.98px) {
+      margin-bottom: 10px;
+    }
+  }
+  &__date {
+    color: #999999;
+    font-size: 14px;
+  }
+}
+.column-news__item {
+  margin-bottom: 40px;
+  @media (max-width: 991.98px) {
+    margin-bottom: 20px;
+  }
+}
+.title {
+  color: #191a1c;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 26px;
+}

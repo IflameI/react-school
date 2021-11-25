@@ -1,5 +1,13 @@
+import { Links, News, Speach } from '..';
+
 const MainContent: React.FC = () => {
-  return <section></section>;
+  return (
+    <>
+      <Speach />
+      <Links />
+      <News />
+    </>
+  );
 };
 
 export default MainContent;
