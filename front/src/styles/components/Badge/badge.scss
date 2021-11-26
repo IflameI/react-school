@@ -1,0 +1,59 @@
+.badge {
+  &__column {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%;
+    @media (max-width: 767.98px) {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 1 100%;
+      flex: 0 1 100%;
+    }
+    &-big {
+      flex: 0 1 100%;
+    }
+  }
+  &__item {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    min-height: 200px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    &:hover {
+      @media (min-width: 1212px) {
+        -webkit-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+        -ms-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+    }
+  }
+  &__text {
+    padding: 0px 0px 25px 40px;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 26px;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    @media (max-width: 991.98px) {
+      font-size: 25px;
+      padding: 0px 0px 25px 20px;
+    }
+    @media (max-width: 450px) {
+      font-size: 16px;
+    }
+  }
+}

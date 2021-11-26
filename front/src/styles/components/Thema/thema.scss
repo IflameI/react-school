@@ -1,0 +1,18 @@
+.thema {
+  &__title {
+    margin-bottom: 35px;
+    padding-top: 80px;
+    @media (max-width: 991.98px) {
+      padding-top: 20px;
+    }
+  }
+  &__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    @media (max-width: 767.98px) {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+  }
+}

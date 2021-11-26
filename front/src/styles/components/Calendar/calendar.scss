@@ -1,0 +1,17 @@
+.calendar {
+  &__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  &__column {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 100%;
+    flex: 0 1 100%;
+  }
+  &__title {
+    @media (max-width: 767.98px) {
+      padding-top: 30px;
+    }
+  }
+}
