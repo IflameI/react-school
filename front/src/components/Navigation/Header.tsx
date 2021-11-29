@@ -1,3 +1,4 @@
+import { Burger } from '..';
 import VKIcon from '../../assets/img/i_01.svg';
 import InstIcon from '../../assets/img/i_02.svg';
 import OKIcon from '../../assets/img/i_03.svg';
@@ -88,30 +89,7 @@ const Header: React.FC = () => {
       <div className='header-bottom header'>
         <div className='container'>
           <div className='header__row'>
-            <nav className='header__menu menu'>
-              <div className='menu__body'>
-                <ul className='menu__list'>
-                  <li className='menu__itemlink'>
-                    <span className='menu__link'>О школе</span>
-                  </li>
-                  <li className='menu__itemlink'>
-                    <span className='menu__link'>Документы</span>
-                  </li>
-                  <li className='menu__itemlink'>
-                    <span className='menu__link'>Школьная жизнь</span>
-                  </li>
-                  <li className='menu__itemlink'>
-                    <span className='menu__link'>Учебные материалы</span>
-                  </li>
-                  <li className='header-list-item'>
-                    <span className='menu__link'>Форум</span>
-                  </li>
-                  <li className='menu__itemlink'>
-                    <span className='menu__link'>Обращения</span>
-                  </li>
-                </ul>
-              </div>
-            </nav>
+            <Burger />
           </div>
         </div>
       </div>

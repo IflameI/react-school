@@ -1,4 +1,4 @@
-import { Calendar, Links, News, Speach, Thema } from '..';
+import { Banners, Calendar, Links, News, Speach, Thema } from '..';
 import Achiev from '../Achiev/Achiev';
 
 const MainContent: React.FC = () => {
@@ -10,6 +10,7 @@ const MainContent: React.FC = () => {
       <Thema />
       <Calendar />
       <Achiev />
+      <Banners />
     </>
   );
 };

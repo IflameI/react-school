@@ -1,0 +1,49 @@
+.slider-banners {
+  padding-top: 75px;
+  padding-bottom: 60px;
+  &__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 -30px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  &__column {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 25%;
+    flex: 1 1 25%;
+    padding: 0 0px 0 60px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    @media (max-width: 767.98px) {
+      -webkit-box-flex: 1;
+      -ms-flex: 1 1 100%;
+      flex: 1 1 100%;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      padding: 0;
+    }
+    img {
+      width: 50px;
+      height: 50px;
+    }
+    span {
+      margin-left: 15px;
+      color: #000000;
+      font-size: 14px;
+      line-height: 16px;
+      margin-right: 15px;
+      max-width: 190px;
+      @media (max-width: 991.98px) {
+        font-size: 13px;
+      }
+    }
+  }
+}

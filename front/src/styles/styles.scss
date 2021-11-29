@@ -80,7 +80,22 @@ body {
 @import './components/Calendar/calendar.scss';
 @import './components/Thema/thema.scss';
 @import './components/Achiev/achiev.scss';
+@import './components/Banners/banners.scss';
 
 //</ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+.slick-prev,
+.slick-next {
+  width: 7px;
+  height: 12px;
+}
+.slick-prev {
+  left: 0;
+}
 
+.slick-next {
+  right: 0;
+}
+#root {
+  overflow: hidden;
+}
 //====================================================================================================
