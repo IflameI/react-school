@@ -18,7 +18,12 @@ let User = class User extends sequelize_typescript_1.Model {
 };
 __decorate([
     (0, swagger_1.ApiProperty)({ example: '1', description: 'Уникальный индентификатор' }),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true }),
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.INTEGER,
+        unique: true,
+        autoIncrement: true,
+        primaryKey: true,
+    }),
     __metadata("design:type", Number)
 ], User.prototype, "id", void 0);
 __decorate([
