@@ -1,8 +1,12 @@
 export { default as Header } from './Navigation/Header';
 export { default as NavSite } from './Navigation/NavSite';
+export { default as HeaderFunctional } from './Navigation/HeaderFunctional';
 
 export { default as Burger } from './helpers/Burger/Burger';
 export { default as RightNav } from './helpers/Burger/RightNav';
+export { default as Modal } from './helpers/Modal';
+export { default as ModalAuthLogin } from './helpers/ModalAuth/ModalAuthLogin';
+export { default as ModalAuthRegister } from './helpers/ModalAuth/ModalAuthRegister';
 
 export { default as MainContent } from './MainContent/MainContent';
 

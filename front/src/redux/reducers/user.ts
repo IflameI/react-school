@@ -4,6 +4,7 @@ const initialState: userState = {
   data: null,
   token: window.localStorage.BearerSchool,
   isAuth: window.localStorage.BearerSchool ? true : false,
+  isLoader: false,
 };
 
 export const user = (state = initialState, action: userActions): userState => {
@@ -18,6 +19,9 @@ export const user = (state = initialState, action: userActions): userState => {
         ...state,
         token: action.payload,
       };
+    case userActionsType.SET_USER_LOADER:
+      return { ...state, isLoader: action.payload };
+
     default:
       return state;
   }

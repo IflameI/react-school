@@ -1,9 +1,7 @@
-import { Burger } from '..';
+import { Burger, HeaderFunctional } from '..';
 import VKIcon from '../../assets/img/i_01.svg';
 import InstIcon from '../../assets/img/i_02.svg';
 import OKIcon from '../../assets/img/i_03.svg';
-import LoginIcon from '../../assets/img/login.png';
-import VesrionIcon from '../../assets/img/vesrion.png';
 
 const Header: React.FC = () => {
   return (
@@ -35,23 +33,7 @@ const Header: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className='sup-menu__right sup-menu__column'>
-              <div className='sup-menu__functional'>
-                <div className='sup-menu__login'>
-                  <img src={LoginIcon} alt='login' />
-                  <span>Вход</span>
-                </div>
-                <div className='sup-menu__version'>
-                  <img src={VesrionIcon} alt='login' />
-                  <span>Версия для слабовидящих</span>
-                </div>
-                <div className='menu__icon icon-menu'>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-            </div>
+            <HeaderFunctional />
           </div>
         </div>
       </div>
