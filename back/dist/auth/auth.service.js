@@ -42,6 +42,11 @@ let AuthService = class AuthService {
     }
     async validateUser(userDto) {
         const user = await this.userService.getUserByEmail(userDto.email);
+        if (!user) {
+            throw new common_1.NotFoundException({
+                message: 'Пользователь не найден',
+            });
+        }
         const passwordEquals = await bcrypt.compare(userDto.password, user.password);
         if (user && passwordEquals) {
             return user;

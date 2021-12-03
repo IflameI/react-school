@@ -16,8 +16,8 @@ type ModalInputs = {
 };
 
 const ModalAuthRegister: React.FC<IModalAuthRegister> = ({ setModalActive, setAuthStatus }) => {
-  const { isLoader, isAuth } = useTypedSelector((state) => state.user);
-  const { fetchUserRegister } = useActions();
+  const { isLoader, isAuth, error } = useTypedSelector((state) => state.user);
+  const { fetchUserAuth, setUserError } = useActions();
 
   const {
     register,
@@ -27,16 +27,14 @@ const ModalAuthRegister: React.FC<IModalAuthRegister> = ({ setModalActive, setAu
   } = useForm<ModalInputs>();
 
   const onSubmit: SubmitHandler<ModalInputs> = (data) => {
-    fetchUserRegister(data);
+    fetchUserAuth(data, 'registration');
   };
 
-  const onClickChangeStatus = () => {
-    setAuthStatus('login');
-  };
-
+  //Закрыть модалку,очистить поля и убрать ошибки после успешной регистрации
   useEffect(() => {
     if (isAuth) {
       setModalActive(false);
+      setUserError('');
       reset();
     }
   }, [isAuth]);
@@ -82,12 +80,14 @@ const ModalAuthRegister: React.FC<IModalAuthRegister> = ({ setModalActive, setAu
             </div>
           </div>
           <div className='modal__footer'>
-            <button type='submit' className='btn'>
+            <button type='submit' disabled={isLoader} className='btn'>
               Зарегистрироваться
             </button>
           </div>
+          {error && <div className='auth__error auth__error-m'>{error}</div>}
           <div className='modal__notice'>
-            Уже есть аккаунт?<span onClick={onClickChangeStatus}>Войдите в свой аккаунт</span>
+            Уже есть аккаунт?
+            <span onClick={() => setAuthStatus('login')}>Войдите в свой аккаунт</span>
           </div>
         </form>
         {isLoader ? 'Loading' : ''}

@@ -20,7 +20,7 @@ const HeaderFunctional: React.FC = () => {
             {!isAuth ? (
               <span onClick={() => setModalActive(true)}>Вход</span>
             ) : (
-              <span onClick={() => setUserLogout}>Выход</span>
+              <span onClick={setUserLogout}>Выход</span>
             )}
           </div>
           <div className='sup-menu__version'>

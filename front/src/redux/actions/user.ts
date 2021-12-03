@@ -3,48 +3,49 @@ import axios from 'axios';
 import { Dispatch } from 'redux';
 import { userActions, userActionsType, userDataType } from '../types/userTypeRedux';
 
-type loginUserResponse = {
+type authUserResponse = {
   data: {
     token: string;
   };
 };
 
-export const fetchUserRegister = (postData: userDataType) => {
-  return async (dispatch: Dispatch<userActions>) => {
-    try {
-      dispatch({ type: userActionsType.SET_USER_LOADER, payload: true });
-      const response = await axios.post('/auth/registration', postData);
-      dispatch({ type: userActionsType.SET_IS_AUTH, payload: true });
-      dispatch({ type: userActionsType.SET_USER_TOKEN, payload: response.data.token });
-      window.localStorage.setItem('BearerSchool', response.data.token);
-      if (window.localStorage.BearerSchool === response.data.token) {
-      }
-      dispatch({ type: userActionsType.SET_USER_LOADER, payload: false });
-      return response;
-    } catch (e: any) {
-      dispatch({ type: userActionsType.SET_USER_LOADER, payload: false });
-      if (e.response.status === 400) {
-        alert('Пользователь с таким email уже существует');
-      }
-    }
-  };
+export const setIsAuth = (): userActions => {
+  return { type: userActionsType.SET_IS_AUTH, payload: true };
 };
 
-export const fetchUserLogin = (postData: userDataType) => {
+export const setUserLoader = (payload: boolean): userActions => {
+  return { type: userActionsType.SET_USER_LOADER, payload };
+};
+
+export const setUserToken = (response: authUserResponse): userActions => {
+  window.localStorage.setItem('BearerSchool', response.data.token);
+  return { type: userActionsType.SET_USER_TOKEN, payload: response.data.token };
+};
+
+export const setUserError = (payload: string): userActions => {
+  return { type: userActionsType.SET_USER_ERROR, payload };
+};
+
+export const fetchUserAuth = (postData: userDataType, path: 'login' | 'registration') => {
   return async (dispatch: Dispatch<userActions>) => {
     try {
-      dispatch({ type: userActionsType.SET_USER_LOADER, payload: true });
-      const response: loginUserResponse = await axios.post('/auth/login', postData);
-      dispatch({ type: userActionsType.SET_IS_AUTH, payload: true });
-      dispatch({ type: userActionsType.SET_USER_TOKEN, payload: response.data.token });
-      window.localStorage.setItem('BearerSchool', response.data.token);
-      if (window.localStorage.BearerSchool === response.data.token) {
-      }
-      dispatch({ type: userActionsType.SET_USER_LOADER, payload: false });
+      dispatch(setUserLoader(true));
+      const response: authUserResponse = await axios.post(`/auth/${path}`, postData);
+      dispatch(setIsAuth());
+      dispatch(setUserToken(response));
+      dispatch(setUserLoader(false));
       return response;
-    } catch (e) {
-      dispatch({ type: userActionsType.SET_USER_LOADER, payload: false });
-      console.warn('Произошла ошибка при авторизации ' + e);
+    } catch (e: any) {
+      dispatch(setUserLoader(false));
+      if (e.response.status === 400) {
+        dispatch(setUserError('Пользователь с такой почтой уже существует'));
+      } else if (e.response.status === 401) {
+        dispatch(setUserError('Неверный логин или пароль'));
+      } else if (e.response.status === 404) {
+        dispatch(setUserError('Пользователь не найден'));
+      } else {
+        dispatch(setUserError('Произошла ошибка во время авторизации'));
+      }
     }
   };
 };

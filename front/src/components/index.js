@@ -7,6 +7,7 @@ export { default as RightNav } from './helpers/Burger/RightNav';
 export { default as Modal } from './helpers/Modal';
 export { default as ModalAuthLogin } from './helpers/ModalAuth/ModalAuthLogin';
 export { default as ModalAuthRegister } from './helpers/ModalAuth/ModalAuthRegister';
+export { default as Loader } from './helpers/Loader/Loader';
 
 export { default as MainContent } from './MainContent/MainContent';
 

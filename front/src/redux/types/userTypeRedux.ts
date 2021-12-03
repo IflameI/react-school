@@ -8,14 +8,15 @@ export interface userState {
   token: string | null;
   isAuth: boolean;
   isLoader: boolean;
+  error: string;
 }
 
 export enum userActionsType {
   SET_IS_AUTH = 'SET_IS_AUTH',
-  SET_USER_DATA_PENDING = 'SET_USER_DATA_PENDING',
   SET_USER_TOKEN = 'SET_USER_TOKEN',
   SET_USER_LOGOUT = 'SET_USER_LOGOUT',
   SET_USER_LOADER = 'SET_USER_LOADER',
+  SET_USER_ERROR = 'SET_USER_ERROR',
 }
 
 interface setUserIsAuthType {
@@ -25,10 +26,6 @@ interface setUserIsAuthType {
 
 interface setUserLogoutAuthType {
   type: userActionsType.SET_USER_LOGOUT;
-}
-
-interface setUserDataPendingType {
-  type: userActionsType.SET_USER_DATA_PENDING;
 }
 
 interface setUserTokenType {
@@ -41,9 +38,14 @@ interface setUserLoading {
   payload: boolean;
 }
 
+interface setUserError {
+  type: userActionsType.SET_USER_ERROR;
+  payload: string;
+}
+
 export type userActions =
-  | setUserDataPendingType
   | setUserIsAuthType
   | setUserTokenType
   | setUserLogoutAuthType
-  | setUserLoading;
+  | setUserLoading
+  | setUserError;

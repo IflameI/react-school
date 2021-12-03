@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { Loader } from '../..';
 
 import { Dispatcher } from '../../../globalTypes/setActionType';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
 
-interface ModalAuthLogin {
+interface IModalAuthLogin {
   setModalActive: Dispatcher<boolean>;
   setAuthStatus: Dispatcher<'login' | 'register'>;
 }
@@ -15,28 +16,28 @@ type ModalInputs = {
   password: string;
 };
 
-const ModalAuthLogin: React.FC<ModalAuthLogin> = ({ setModalActive, setAuthStatus }) => {
-  const { isLoader, isAuth } = useTypedSelector((state) => state.user);
-  const { fetchUserLogin } = useActions();
+const ModalAuthLogin: React.FC<IModalAuthLogin> = ({ setModalActive, setAuthStatus }) => {
+  const { isLoader, isAuth, error } = useTypedSelector((state) => state.user);
+  const { fetchUserAuth, setUserError } = useActions();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<ModalInputs>();
+  } = useForm<ModalInputs>({
+    mode: 'onChange',
+  });
 
   const onSubmit: SubmitHandler<ModalInputs> = (data) => {
-    fetchUserLogin(data);
+    fetchUserAuth(data, 'login');
   };
 
-  const onClickChangeStatus = () => {
-    setAuthStatus('register');
-  };
-
+  //Закрыть модалку,очистить поля и убрать ошибки после успешной аунтификации
   useEffect(() => {
     if (isAuth) {
       setModalActive(false);
+      setUserError('');
       reset();
     }
   }, [isAuth]);
@@ -83,13 +84,23 @@ const ModalAuthLogin: React.FC<ModalAuthLogin> = ({ setModalActive, setAuthStatu
             </div>
           </div>
           <div className='modal__footer'>
-            <button className='btn'>Авторизоваться</button>
+            <button disabled={isLoader} className='btn'>
+              Авторизоваться
+            </button>
           </div>
+          {error && <div className='auth__error auth__error-m'>{error}</div>}
+          {isLoader ? (
+            <div className='modal__loader'>
+              <Loader />
+            </div>
+          ) : (
+            ''
+          )}
           <div className='modal__notice'>
-            Нет аккаунта? <span onClick={onClickChangeStatus}>Зарегистрируйтесь сейчас</span>
+            Нет аккаунта?
+            <span onClick={() => setAuthStatus('register')}>Зарегистрируйтесь сейчас</span>
           </div>
         </form>
-        {isLoader ? 'Loading' : ''}
       </div>
     </>
   );
