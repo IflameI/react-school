@@ -81,6 +81,7 @@ body {
 @import './components/Thema/thema.scss';
 @import './components/Achiev/achiev.scss';
 @import './components/Banners/banners.scss';
+@import './components/Cabinet/cabinet.scss';
 
 //</ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
 .slick-prev,
@@ -241,6 +242,34 @@ body {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.table-main {
+  color: inherit;
+}
+.table-main {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #29323a;
+}
+table > thead > tr > th {
+  border-top: none !important;
+  border-bottom-width: 1px !important;
+  text-transform: uppercase;
+}
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.permision {
+  padding-top: 70px;
+  text-align: center;
+  p {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
   }
 }
 

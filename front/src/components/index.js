@@ -9,7 +9,9 @@ export { default as ModalAuthLogin } from './helpers/ModalAuth/ModalAuthLogin';
 export { default as ModalAuthRegister } from './helpers/ModalAuth/ModalAuthRegister';
 export { default as Loader } from './helpers/Loader/Loader';
 
-export { default as MainContent } from './MainContent/MainContent';
+export { default as MainPage } from '../pages/MainPage';
+export { default as CabinetPage } from '../pages/CabinetPage';
+export { default as NotPermisionPage } from '../pages/NotPermisionPage';
 
 export { default as Links } from './Links/Links';
 export { default as LinkColumn } from './Links/LinkColumn';
@@ -27,3 +29,6 @@ export { default as Banners } from './Banners/Banners';
 
 export { default as Badge } from './Badge';
 export { default as NewsItem } from './NewsItem';
+
+export { default as CabinetTable } from './Cabinet/CabinetTable/CabinetTable';
+export { default as CabinetItem } from './Cabinet/CabinetTable/CabinetItem';

@@ -1,7 +1,7 @@
 .header {
   position: relative;
   width: 100%;
-  z-index: 47;
+  z-index: 37;
   left: 0;
   top: 0px;
   background-color: #fff;
@@ -33,6 +33,7 @@
   &-bottom {
     background: #fff;
     border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
   }
 }
 .row-top {
@@ -51,11 +52,12 @@
     align-items: center;
   }
   &__description {
-    color: #000000;
+    a {
+      color: #000000;
+    }
     font-size: 20px;
     font-weight: 500;
     line-height: 24px;
-    margin-left: 20px;
     @media (max-width: 1212px) {
       font-size: 15px;
       line-height: 18px;
@@ -85,8 +87,6 @@
     }
   }
   &__place {
-    background: url('') left no-repeat; ///123
-    padding-left: 65px;
     height: 46px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -168,7 +168,7 @@
 }
 .sup-menu {
   background-color: #147fc3;
-  z-index: 48;
+  z-index: 40;
   position: relative;
   height: 50px;
   -webkit-box-align: center;
@@ -191,6 +191,9 @@
   }
   &__left {
     flex: 1 1 auto;
+    @media (max-width: 550px) {
+      display: none;
+    }
   }
   &__column {
     @include flexbox;
@@ -199,6 +202,9 @@
   &__social {
     @include flexbox;
     align-items: center;
+    @media (max-width: 991.98px) {
+      display: none;
+    }
   }
   &__text {
     color: #ffffff;
@@ -207,6 +213,14 @@
     line-height: 25px;
     @media (max-width: 991.98px) {
       display: none;
+    }
+  }
+  &__cabinet {
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    @media (max-width: 991.98px) {
+      margin-right: 15px;
     }
   }
   &__list {
@@ -230,6 +244,9 @@
       font-size: 15px;
       line-height: 25px;
       margin-left: 10px;
+      @media (max-width: 991.98px) {
+        font-size: 14px;
+      }
     }
     a {
       @include flexbox;
@@ -516,8 +533,6 @@
   width: 2rem;
   height: 2rem;
   position: absolute;
-  top: 11px;
-
   right: 35px;
   z-index: 20;
   display: none;

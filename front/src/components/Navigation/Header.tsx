@@ -1,4 +1,7 @@
+import { NavLink } from 'react-router-dom';
+
 import { Burger, HeaderFunctional } from '..';
+
 import VKIcon from '../../assets/img/i_01.svg';
 import InstIcon from '../../assets/img/i_02.svg';
 import OKIcon from '../../assets/img/i_03.svg';
@@ -42,7 +45,9 @@ const Header: React.FC = () => {
           <div className='row-top__content'>
             <div className='row-top__wrapper'>
               <div className='row-top__logo'>
-                <div className='row-top__description'>REACT-SCHOOL</div>
+                <div className='row-top__description'>
+                  <NavLink to='/'>REACT-SCHOOL</NavLink>
+                </div>
               </div>
             </div>
             <div data-da='menu__list,last,991.98' className='row-top__contacts top-contacts'>

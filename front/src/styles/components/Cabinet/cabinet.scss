@@ -1,0 +1,52 @@
+.cabinet {
+  &__row {
+    display: flex;
+    padding-top: 35px;
+  }
+
+  &__table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  &__head {
+    font-size: 0.875rem;
+    text-align: left;
+    @media (max-width: 700px) {
+      font-size: 0.675rem;
+    }
+  }
+  &__table {
+    &-wrap {
+      width: 100%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #147fc3;
+    padding: 0.75rem;
+    color: #147fc3;
+    @media (max-width: 700px) {
+      padding: 0.55rem;
+    }
+  }
+  & tbody tr:nth-of-type(odd) {
+    background-color: #147fc3;
+    & td {
+      color: #fff;
+    }
+  }
+  & tbody td {
+    padding: 0.75rem;
+    vertical-align: top;
+    font-weight: 600;
+    color: #c1c3cf;
+
+    border: none;
+    font-size: 14px;
+  }
+  & tbody td p {
+    font-size: 14px;
+  }
+}
