@@ -1,5 +1,6 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { AddRoleDto } from 'src/roles/dto/add-role-dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.model';
 import { UsersService } from './users.service';
@@ -14,5 +15,10 @@ export class UsersController {
   @Post()
   create(@Body() userDto: CreateUserDto) {
     return this.usersService.createUser(userDto);
+  }
+
+  @Get('about/:email')
+  getUserInfoByEmail(@Param() params) {
+    return this.usersService.getUserByEmail(params.email);
   }
 }

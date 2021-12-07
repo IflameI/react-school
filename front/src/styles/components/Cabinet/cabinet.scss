@@ -22,6 +22,13 @@
       -webkit-overflow-scrolling: touch;
     }
   }
+  &__main-title {
+    padding-top: 40px;
+    font-size: 26px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+  }
   thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #147fc3;

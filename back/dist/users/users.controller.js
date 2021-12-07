@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
+const add_role_dto_1 = require("../roles/dto/add-role-dto");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const users_model_1 = require("./users.model");
 const users_service_1 = require("./users.service");
@@ -24,6 +25,9 @@ let UsersController = class UsersController {
     }
     create(userDto) {
         return this.usersService.createUser(userDto);
+    }
+    getUserInfoByEmail(params) {
+        return this.usersService.getUserByEmail(params.email);
     }
 };
 __decorate([
@@ -35,6 +39,13 @@ __decorate([
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)('about/:email'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getUserInfoByEmail", null);
 UsersController = __decorate([
     (0, swagger_1.ApiTags)('Пользователи'),
     (0, common_1.Controller)('users'),
