@@ -5,5 +5,8 @@ export declare class UsersController {
     private usersService;
     constructor(usersService: UsersService);
     create(userDto: CreateUserDto): Promise<User>;
-    getUserInfoByEmail(params: any): Promise<User>;
+    getUserInfoByEmail(params: any): Promise<{
+        role: string;
+        name: string;
+    }>;
 }

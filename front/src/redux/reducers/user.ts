@@ -1,7 +1,10 @@
 import { userActions, userActionsType, userState } from '../types/userTypeRedux';
 
 const initialState: userState = {
-  data: null,
+  dataUser: {
+    role: '',
+    name: '',
+  },
   token: window.localStorage.BearerSchool,
   isAuth: window.localStorage.BearerSchool ? true : false,
   isLoader: false,
@@ -20,10 +23,12 @@ export const user = (state = initialState, action: userActions): userState => {
         ...state,
         token: action.payload,
       };
-    case userActionsType.SET_USER_LOADER:
-      return { ...state, isLoader: action.payload };
     case userActionsType.SET_USER_ERROR:
       return { ...state, error: action.payload };
+    case userActionsType.SET_USER_LOADER:
+      return { ...state, isLoader: action.payload };
+    case userActionsType.SET_USER_INFO:
+      return { ...state, dataUser: action.payload };
     default:
       return state;
   }

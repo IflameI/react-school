@@ -27,7 +27,7 @@ let UsersController = class UsersController {
         return this.usersService.createUser(userDto);
     }
     getUserInfoByEmail(params) {
-        return this.usersService.getUserByEmail(params.email);
+        return this.usersService.getUserInfoByEmail(params.email);
     }
 };
 __decorate([

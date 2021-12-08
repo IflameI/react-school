@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { Loader } from '../..';
 
 import { Dispatcher } from '../../../globalTypes/setActionType';
 import { useActions } from '../../../redux/typeHooks/useActions';
@@ -12,29 +13,35 @@ interface IModalAuthRegister {
 
 type ModalInputs = {
   email: string;
+  name: string;
   password: string;
 };
 
 const ModalAuthRegister: React.FC<IModalAuthRegister> = ({ setModalActive, setAuthStatus }) => {
   const { isLoader, isAuth, error } = useTypedSelector((state) => state.user);
-  const { fetchUserAuth, setUserError } = useActions();
+  const { fetchUserAuth, setUserError, getUserInfoByEmail } = useActions();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<ModalInputs>();
+  } = useForm<ModalInputs>({
+    mode: 'onChange',
+  });
 
   const onSubmit: SubmitHandler<ModalInputs> = (data) => {
     fetchUserAuth(data, 'registration');
+    getUserInfoByEmail(data.email);
+    if (error) {
+      setUserError('');
+    }
   };
 
-  //Закрыть модалку,очистить поля и убрать ошибки после успешной регистрации
+  //Закрыть модалку,очистить поля после успешной регистрации
   useEffect(() => {
     if (isAuth) {
       setModalActive(false);
-      setUserError('');
       reset();
     }
   }, [isAuth]);
@@ -44,6 +51,17 @@ const ModalAuthRegister: React.FC<IModalAuthRegister> = ({ setModalActive, setAu
       <div className='modal__body'>
         <form onSubmit={handleSubmit(onSubmit)} className='modal__form'>
           <div className='modal__wrap'>
+            <div className='modal__input'>
+              <label>Ваше имя</label>
+              <input
+                {...register('name', {
+                  required: true,
+                })}
+              />
+              {errors.name && errors.name.type === 'required' && (
+                <span className='auth__error'>Заполните поле</span>
+              )}
+            </div>
             <div className='modal__input'>
               <label>Ваша почта</label>
               <input
@@ -84,13 +102,19 @@ const ModalAuthRegister: React.FC<IModalAuthRegister> = ({ setModalActive, setAu
               Зарегистрироваться
             </button>
           </div>
-          {error && <div className='auth__error auth__error-m'>{error}</div>}
           <div className='modal__notice'>
             Уже есть аккаунт?
             <span onClick={() => setAuthStatus('login')}>Войдите в свой аккаунт</span>
           </div>
         </form>
-        {isLoader ? 'Loading' : ''}
+        {error && <div className='auth__error auth__error-m'>{error}</div>}
+        {isLoader ? (
+          <div className='modal__loader'>
+            <Loader />
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </>
   );

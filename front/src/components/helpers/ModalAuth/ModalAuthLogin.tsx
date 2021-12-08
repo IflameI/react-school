@@ -18,7 +18,7 @@ type ModalInputs = {
 
 const ModalAuthLogin: React.FC<IModalAuthLogin> = ({ setModalActive, setAuthStatus }) => {
   const { isLoader, isAuth, error } = useTypedSelector((state) => state.user);
-  const { fetchUserAuth, setUserError } = useActions();
+  const { fetchUserAuth, setUserError, getUserInfoByEmail } = useActions();
 
   const {
     register,
@@ -31,13 +31,16 @@ const ModalAuthLogin: React.FC<IModalAuthLogin> = ({ setModalActive, setAuthStat
 
   const onSubmit: SubmitHandler<ModalInputs> = (data) => {
     fetchUserAuth(data, 'login');
+    getUserInfoByEmail(data.email);
+    if (error) {
+      setUserError('');
+    }
   };
 
-  //Закрыть модалку,очистить поля и убрать ошибки после успешной аунтификации
+  //Закрыть модалку,очистить поля после успешной аунтификации
   useEffect(() => {
     if (isAuth) {
       setModalActive(false);
-      setUserError('');
       reset();
     }
   }, [isAuth]);

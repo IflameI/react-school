@@ -22,12 +22,32 @@
       -webkit-overflow-scrolling: touch;
     }
   }
-  &__main-title {
-    padding-top: 40px;
-    font-size: 26px;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-align: center;
+  &__main {
+    &-title {
+      padding-top: 40px;
+      font-size: 26px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    &-name {
+      span {
+        color: #147fc3;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    &-class {
+      span {
+        color: #147fc3;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      font-size: 16px;
+    }
   }
   thead th {
     vertical-align: bottom;

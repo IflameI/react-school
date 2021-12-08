@@ -19,6 +19,6 @@ export class UsersController {
 
   @Get('about/:email')
   getUserInfoByEmail(@Param() params) {
-    return this.usersService.getUserByEmail(params.email);
+    return this.usersService.getUserInfoByEmail(params.email);
   }
 }

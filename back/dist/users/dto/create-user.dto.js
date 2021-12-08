@@ -15,6 +15,18 @@ const class_validator_1 = require("class-validator");
 class CreateUserDto {
 }
 __decorate([
+    (0, swagger_1.ApiProperty)({ example: 'Никита', description: 'Имя' }),
+    (0, class_validator_1.IsString)({ message: 'Должно быть строкой' }),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: '5Б', description: 'Класс ученика' }),
+    (0, class_validator_1.IsString)({ message: 'Должно быть строкой' }),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "userClass", void 0);
+__decorate([
     (0, swagger_1.ApiProperty)({ example: 'user@mail.ru', description: 'Почта' }),
     (0, class_validator_1.IsString)({ message: 'Должно быть строкой' }),
     (0, class_validator_1.IsEmail)({}, { message: 'Некорректный email' }),

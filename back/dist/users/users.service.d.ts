@@ -9,5 +9,9 @@ export declare class UsersService {
     createUser(dto: CreateUserDto): Promise<User>;
     getAllUsers(): Promise<User[]>;
     getUserByEmail(email: string): Promise<User>;
+    getUserInfoByEmail(email: string): Promise<{
+        role: string;
+        name: string;
+    }>;
     addRole(dto: AddRoleDto): Promise<AddRoleDto>;
 }

@@ -41,6 +41,13 @@ let UsersService = class UsersService {
         });
         return user;
     }
+    async getUserInfoByEmail(email) {
+        const user = await this.userRepository.findOne({
+            where: { email },
+            include: { all: true },
+        });
+        return { role: user.roles[0].value, name: user.name };
+    }
     async addRole(dto) {
         const user = await this.userRepository.findByPk(dto.userId);
         const role = await this.roleService.getRoleByValue(dto.value);

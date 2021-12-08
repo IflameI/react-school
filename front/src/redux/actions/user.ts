@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { Dispatch } from 'redux';
-import { userActions, userActionsType, userDataType } from '../types/userTypeRedux';
+import { userActions, userActionsType, authuserDataType } from '../types/userTypeRedux';
 
 type authUserResponse = {
   data: {
@@ -26,7 +26,7 @@ export const setUserError = (payload: string): userActions => {
   return { type: userActionsType.SET_USER_ERROR, payload };
 };
 
-export const fetchUserAuth = (postData: userDataType, path: 'login' | 'registration') => {
+export const fetchUserAuth = (postData: authuserDataType, path: 'login' | 'registration') => {
   return async (dispatch: Dispatch<userActions>) => {
     try {
       dispatch(setUserLoader(true));
@@ -55,5 +55,16 @@ export const setUserLogout = () => {
     dispatch({ type: userActionsType.SET_IS_AUTH, payload: false });
     dispatch({ type: userActionsType.SET_USER_TOKEN, payload: null });
     window.localStorage.removeItem('BearerSchool');
+  };
+};
+
+export const getUserInfoByEmail = (email: string) => {
+  return async (dispatch: Dispatch<userActions>) => {
+    try {
+      const response = await axios.get(`users/about/${email}`);
+      dispatch({ type: userActionsType.SET_USER_INFO, payload: response.data });
+    } catch (e) {
+      console.error(`Произошла ошибка` + e);
+    }
   };
 };

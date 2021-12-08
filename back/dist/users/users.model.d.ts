@@ -10,6 +10,8 @@ export declare class User extends Model<User, UserCreationAttrs> {
     password: string;
     banned: boolean;
     banReason: string;
+    name: string;
+    userClass: string;
     roles: Role[];
 }
 export {};

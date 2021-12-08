@@ -1,10 +1,15 @@
-export type userDataType = {
+export type authuserDataType = {
   email: string;
   password: string;
 };
 
+type userInfo = {
+  name: string;
+  role: string;
+};
+
 export interface userState {
-  data: null | userDataType;
+  dataUser: userInfo;
   token: string | null;
   isAuth: boolean;
   isLoader: boolean;
@@ -17,6 +22,7 @@ export enum userActionsType {
   SET_USER_LOGOUT = 'SET_USER_LOGOUT',
   SET_USER_LOADER = 'SET_USER_LOADER',
   SET_USER_ERROR = 'SET_USER_ERROR',
+  SET_USER_INFO = 'SET_USER_INFO',
 }
 
 interface setUserIsAuthType {
@@ -43,9 +49,15 @@ interface setUserError {
   payload: string;
 }
 
+interface setUserInfo {
+  type: userActionsType.SET_USER_INFO;
+  payload: userInfo;
+}
+
 export type userActions =
   | setUserIsAuthType
   | setUserTokenType
   | setUserLogoutAuthType
   | setUserLoading
-  | setUserError;
+  | setUserError
+  | setUserInfo;

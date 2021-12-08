@@ -12,6 +12,7 @@ export { default as Loader } from './helpers/Loader/Loader';
 export { default as MainPage } from '../pages/MainPage';
 export { default as CabinetPage } from '../pages/CabinetPage';
 export { default as NotPermisionPage } from '../pages/NotPermisionPage';
+export { default as AdminPage } from '../pages/AdminPage';
 
 export { default as Links } from './Links/Links';
 export { default as LinkColumn } from './Links/LinkColumn';

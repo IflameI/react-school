@@ -47,6 +47,16 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "banReason", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ example: 'Никита', description: 'Имя пользователя' }),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false }),
+    __metadata("design:type", String)
+], User.prototype, "name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: '5Б', description: 'Класс ученика' }),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: true }),
+    __metadata("design:type", String)
+], User.prototype, "userClass", void 0);
+__decorate([
     (0, sequelize_typescript_1.BelongsToMany)(() => roles_model_1.Role, () => user_roles_model_1.UserRoles),
     __metadata("design:type", Array)
 ], User.prototype, "roles", void 0);
