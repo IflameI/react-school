@@ -3,7 +3,7 @@ export type authuserDataType = {
   password: string;
 };
 
-type userInfo = {
+export type userInfo = {
   name: string;
   role: string;
 };

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { Dispatch } from 'redux';
-import { userActions, userActionsType, authuserDataType } from '../types/userTypeRedux';
+import { userActions, userActionsType, authuserDataType, userInfo } from '../types/userTypeRedux';
 
 type authUserResponse = {
   data: {
@@ -54,6 +54,7 @@ export const setUserLogout = () => {
   return async (dispatch: Dispatch<userActions>) => {
     dispatch({ type: userActionsType.SET_IS_AUTH, payload: false });
     dispatch({ type: userActionsType.SET_USER_TOKEN, payload: null });
+    dispatch({ type: userActionsType.SET_USER_INFO, payload: {} as userInfo });
     window.localStorage.removeItem('BearerSchool');
   };
 };
