@@ -1,16 +1,19 @@
-.cabinet {
-  &__row {
-    display: flex;
-    padding-top: 35px;
+.admin {
+  &__title {
+    margin-bottom: 50px;
   }
-
+  &__content {
+    display: flex;
+  }
   &__table {
     border-collapse: collapse;
     width: 100%;
     &-wrap {
       width: 100%;
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
+      @media (max-width: 991.98px) {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
     }
   }
   &__head {
@@ -20,31 +23,26 @@
       font-size: 0.675rem;
     }
   }
-  &__main {
-    &-title {
-      padding-top: 40px;
-      font-size: 26px;
-      font-weight: 700;
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: 25px;
-    }
-    &-name {
+  &__change {
+    cursor: pointer;
+    &:hover {
       span {
-        color: #147fc3;
-        text-transform: uppercase;
-        font-weight: 700;
+        img {
+          @include anim(0.3s, 0s);
+          opacity: 1;
+        }
       }
-      margin-bottom: 15px;
-      font-size: 16px;
     }
-    &-class {
-      span {
-        color: #147fc3;
-        text-transform: uppercase;
-        font-weight: 700;
+    span {
+      position: relative;
+      img {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        right: -12px;
+        top: -4px;
+        opacity: 0;
       }
-      font-size: 16px;
     }
   }
   thead th {
@@ -56,7 +54,7 @@
       padding: 0.55rem;
     }
   }
-  & tbody tr:nth-of-type(odd) {
+  & tbody tr {
     background-color: #147fc3;
     & td {
       color: #fff;
@@ -68,7 +66,7 @@
     font-weight: 600;
     color: #c1c3cf;
 
-    border: none;
+    border: 1px solid #fff;
     font-size: 14px;
   }
   & tbody td p {

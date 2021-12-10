@@ -20,6 +20,7 @@ type ModalInputs = {
 const ModalAuthRegister: React.FC<IModalAuthRegister> = ({ setModalActive, setAuthStatus }) => {
   const [userEmail, setUserEmail] = useState<string>('');
   const [isSuccessRegister, setIsSuccessRegister] = useState<boolean>();
+
   const { isLoader, isAuth, error } = useTypedSelector((state) => state.user);
   const { fetchUserAuth, setUserError, getUserInfoByEmail } = useActions();
 
@@ -39,8 +40,6 @@ const ModalAuthRegister: React.FC<IModalAuthRegister> = ({ setModalActive, setAu
       setUserError('');
     }
   };
-
-  // ToDO : Зарефакторить код ниже , узнать почему происходит ререндер всей страницы при регистрации
 
   //Закрыть модалку,очистить поля после успешной регистрации
   useEffect(() => {

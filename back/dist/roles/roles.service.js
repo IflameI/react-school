@@ -21,7 +21,10 @@ let RolesService = class RolesService {
         this.roleRepository = roleRepository;
     }
     async createRole(dto) {
-        const role = await this.roleRepository.create(dto);
+        const role = await this.roleRepository.create({
+            value: dto.value,
+            description: dto.description,
+        });
         return role;
     }
     async getRoleByValue(value) {

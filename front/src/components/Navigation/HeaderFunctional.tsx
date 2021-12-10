@@ -16,6 +16,10 @@ const HeaderFunctional: React.FC = () => {
 
   const { setUserLogout } = useActions();
   const { isAuth } = useTypedSelector((state) => state.user);
+
+  const onClickShowModal = () => {
+    setModalActive(true);
+  };
   return (
     <>
       <div className='sup-menu__right sup-menu__column'>
@@ -31,7 +35,7 @@ const HeaderFunctional: React.FC = () => {
           <div className='sup-menu__login'>
             <img src={LoginIcon} alt='login' />
             {!isAuth ? (
-              <span onClick={() => setModalActive(true)}>Вход</span>
+              <span onClick={onClickShowModal}>Вход</span>
             ) : (
               <span onClick={setUserLogout}>Выход</span>
             )}

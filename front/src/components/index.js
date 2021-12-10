@@ -12,7 +12,7 @@ export { default as Loader } from './helpers/Loader/Loader';
 export { default as MainPage } from '../pages/MainPage';
 export { default as CabinetPage } from '../pages/CabinetPage';
 export { default as NotPermisionPage } from '../pages/NotPermisionPage';
-export { default as AdminPage } from '../pages/AdminPage';
+export { default as AdminCabinetPage } from '../pages/AdminCabinetPage';
 
 export { default as Links } from './Links/Links';
 export { default as LinkColumn } from './Links/LinkColumn';
@@ -33,3 +33,6 @@ export { default as NewsItem } from './NewsItem';
 
 export { default as CabinetTable } from './Cabinet/CabinetTable/CabinetTable';
 export { default as CabinetItem } from './Cabinet/CabinetTable/CabinetItem';
+
+export { default as AdminTable } from './Admin/AdminTable/AdminTable';
+export { default as AdminItem } from './Admin/AdminTable/AdminItem';
