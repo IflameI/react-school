@@ -46,7 +46,20 @@ let UsersService = class UsersService {
             where: { email },
             include: { all: true },
         });
-        return { role: user.roles[0].value, name: user.name };
+        return {
+            role: user.roles[0].value,
+            name: user.name,
+            userClass: user.userClass,
+        };
+    }
+    async getTeacherAndStudent() {
+        const user = await this.userRepository.findAll({
+            include: { all: true },
+        });
+        const filtredUsers = user.filter((item) => item.userClass !== null);
+        return filtredUsers.map((item) => {
+            return { id: item.id, name: item.name, role: item.roles[0].value };
+        });
     }
     async addRole(dto) {
         const user = await this.userRepository.findByPk(dto.userId);

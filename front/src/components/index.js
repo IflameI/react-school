@@ -5,8 +5,8 @@ export { default as HeaderFunctional } from './Navigation/HeaderFunctional';
 export { default as Burger } from './helpers/Burger/Burger';
 export { default as RightNav } from './helpers/Burger/RightNav';
 export { default as Modal } from './helpers/Modal';
-export { default as ModalAuthLogin } from './helpers/ModalAuth/ModalAuthLogin';
-export { default as ModalAuthRegister } from './helpers/ModalAuth/ModalAuthRegister';
+export { default as ModalAuthLogin } from './ModalAuth/ModalAuthLogin';
+export { default as ModalAuthRegister } from './ModalAuth/ModalAuthRegister';
 export { default as Loader } from './helpers/Loader/Loader';
 
 export { default as MainPage } from '../pages/MainPage';

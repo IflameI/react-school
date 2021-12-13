@@ -8,7 +8,7 @@ async function start() {
     const PORT = process.env.PORT || 3000;
     const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
     const config = new swagger_1.DocumentBuilder()
-        .setTitle('ReactJSBlog')
+        .setTitle('ReactJSSchool')
         .setDescription('Документация REST API')
         .setVersion('1.0.0')
         .addTag('nest')

@@ -17,8 +17,23 @@ export class UsersController {
     return this.usersService.createUser(userDto);
   }
 
+  @ApiOperation({ summary: 'Получить информацию о пользователе по email' })
+  @ApiResponse({
+    status: 200,
+  })
   @Get('about/:email')
   getUserInfoByEmail(@Param() params) {
     return this.usersService.getUserInfoByEmail(params.email);
+  }
+
+  @ApiOperation({
+    summary: 'Получить информацию о всех пользователях роль которых не admin',
+  })
+  @ApiResponse({
+    status: 200,
+  })
+  @Get('about')
+  getTeacherAndStudent() {
+    return this.usersService.getTeacherAndStudent();
   }
 }

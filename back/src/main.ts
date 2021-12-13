@@ -8,7 +8,7 @@ async function start() {
   const app = await NestFactory.create(AppModule, { cors: true });
 
   const config = new DocumentBuilder()
-    .setTitle('ReactJSBlog')
+    .setTitle('ReactJSSchool')
     .setDescription('Документация REST API')
     .setVersion('1.0.0')
     .addTag('nest')

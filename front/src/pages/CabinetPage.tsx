@@ -11,7 +11,7 @@ const CabinetPage: React.FC = () => {
           Имя ученика: <span>{dataUser.name}</span>
         </p>
         <p className='cabinet__main-class'>
-          Класс ученика: <span>8б</span>
+          Класс ученика: <span>{dataUser.userClass}</span>
         </p>
         <div className='cabinet__row'>
           <div className='cabinet__table-wrap'>

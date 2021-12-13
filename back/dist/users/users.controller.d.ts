@@ -8,5 +8,11 @@ export declare class UsersController {
     getUserInfoByEmail(params: any): Promise<{
         role: string;
         name: string;
+        userClass: string;
     }>;
+    getTeacherAndStudent(): Promise<{
+        id: number;
+        name: string;
+        role: string;
+    }[]>;
 }

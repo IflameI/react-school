@@ -6,6 +6,7 @@ export type authuserDataType = {
 export type userInfo = {
   name: string;
   role: string;
+  userClass: string;
 };
 
 export interface userState {

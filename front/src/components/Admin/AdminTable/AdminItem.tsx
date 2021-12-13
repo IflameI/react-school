@@ -3,7 +3,7 @@ import Icon from '../../../assets/img/pencil.png';
 interface IAdminItem {
   id: number;
   name: string;
-  role: 'Ученик' | 'Учитель';
+  role: string;
 }
 
 const AdminItem: React.FC<IAdminItem> = ({ id, name, role }) => {

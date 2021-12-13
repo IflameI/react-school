@@ -12,6 +12,12 @@ export declare class UsersService {
     getUserInfoByEmail(email: string): Promise<{
         role: string;
         name: string;
+        userClass: string;
     }>;
+    getTeacherAndStudent(): Promise<{
+        id: number;
+        name: string;
+        role: string;
+    }[]>;
     addRole(dto: AddRoleDto): Promise<AddRoleDto>;
 }

@@ -4,6 +4,7 @@ const initialState: userState = {
   dataUser: {
     role: '',
     name: '',
+    userClass: '',
   },
   token: window.localStorage.BearerSchool,
   isAuth: window.localStorage.BearerSchool ? true : false,

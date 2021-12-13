@@ -1,22 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Loader } from '../..';
+import { Loader } from '..';
 
-import { Dispatcher } from '../../../globalTypes/setActionType';
-import { useActions } from '../../../redux/typeHooks/useActions';
-import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
+import { Dispatcher } from '../../globalTypes/setActionType';
+import { useActions } from '../../redux/typeHooks/useActions';
+import { useTypedSelector } from '../../redux/typeHooks/useTypedSelector';
 
-interface IModalAuthLogin {
+interface IModalAuthRegister {
   setModalActive: Dispatcher<boolean>;
   setAuthStatus: Dispatcher<'login' | 'register'>;
 }
 
 type ModalInputs = {
   email: string;
+  name: string;
   password: string;
 };
 
-const ModalAuthLogin: React.FC<IModalAuthLogin> = ({ setModalActive, setAuthStatus }) => {
+const ModalAuthRegister: React.FC<IModalAuthRegister> = ({ setModalActive, setAuthStatus }) => {
+  const [userEmail, setUserEmail] = useState<string>('');
+  const [isSuccessRegister, setIsSuccessRegister] = useState<boolean>();
+
   const { isLoader, isAuth, error } = useTypedSelector((state) => state.user);
   const { fetchUserAuth, setUserError, getUserInfoByEmail } = useActions();
 
@@ -30,27 +34,44 @@ const ModalAuthLogin: React.FC<IModalAuthLogin> = ({ setModalActive, setAuthStat
   });
 
   const onSubmit: SubmitHandler<ModalInputs> = (data) => {
-    fetchUserAuth(data, 'login');
-    getUserInfoByEmail(data.email);
+    fetchUserAuth(data, 'registration');
+    setUserEmail(data.email);
     if (error) {
       setUserError('');
     }
   };
 
-  //Закрыть модалку,очистить поля после успешной аунтификации
+  //Закрыть модалку,очистить поля после успешной регистрации
   useEffect(() => {
     if (isAuth) {
+      setIsSuccessRegister(true);
       setModalActive(false);
       reset();
     }
   }, [isAuth]);
 
+  useEffect(() => {
+    if (userEmail) {
+      getUserInfoByEmail(userEmail);
+    }
+  }, [isSuccessRegister]);
   return (
     <>
-      <div className='modal__top'>Авторизация</div>
+      <div className='modal__top'>Регистрация</div>
       <div className='modal__body'>
         <form onSubmit={handleSubmit(onSubmit)} className='modal__form'>
           <div className='modal__wrap'>
+            <div className='modal__input'>
+              <label>Ваше имя</label>
+              <input
+                {...register('name', {
+                  required: true,
+                })}
+              />
+              {errors.name && errors.name.type === 'required' && (
+                <span className='auth__error'>Заполните поле</span>
+              )}
+            </div>
             <div className='modal__input'>
               <label>Ваша почта</label>
               <input
@@ -87,26 +108,26 @@ const ModalAuthLogin: React.FC<IModalAuthLogin> = ({ setModalActive, setAuthStat
             </div>
           </div>
           <div className='modal__footer'>
-            <button disabled={isLoader} className='btn'>
-              Авторизоваться
+            <button type='submit' disabled={isLoader} className='btn'>
+              Зарегистрироваться
             </button>
           </div>
-          {error && <div className='auth__error auth__error-m'>{error}</div>}
-          {isLoader ? (
-            <div className='modal__loader'>
-              <Loader />
-            </div>
-          ) : (
-            ''
-          )}
           <div className='modal__notice'>
-            Нет аккаунта?
-            <span onClick={() => setAuthStatus('register')}>Зарегистрируйтесь сейчас</span>
+            Уже есть аккаунт?
+            <span onClick={() => setAuthStatus('login')}>Войдите в свой аккаунт</span>
           </div>
         </form>
+        {error && <div className='auth__error auth__error-m'>{error}</div>}
+        {isLoader ? (
+          <div className='modal__loader'>
+            <Loader />
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </>
   );
 };
 
-export default ModalAuthLogin;
+export default ModalAuthRegister;
