@@ -32,6 +32,9 @@ let UsersController = class UsersController {
     getTeacherAndStudent() {
         return this.usersService.getTeacherAndStudent();
     }
+    addRole(addRoleDto) {
+        return this.usersService.addRole(addRoleDto);
+    }
 };
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Создание пользователя' }),
@@ -65,6 +68,19 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getTeacherAndStudent", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({
+        summary: 'Выдача роли, пользователю',
+    }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+    }),
+    (0, common_1.Get)('role'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [add_role_dto_1.AddRoleDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "addRole", null);
 UsersController = __decorate([
     (0, swagger_1.ApiTags)('Пользователи'),
     (0, common_1.Controller)('users'),

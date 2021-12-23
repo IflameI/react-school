@@ -36,4 +36,15 @@ export class UsersController {
   getTeacherAndStudent() {
     return this.usersService.getTeacherAndStudent();
   }
+
+  @ApiOperation({
+    summary: 'Выдача роли, пользователю',
+  })
+  @ApiResponse({
+    status: 200,
+  })
+  @Get('role')
+  addRole(@Body() addRoleDto: AddRoleDto) {
+    return this.usersService.addRole(addRoleDto);
+  }
 }
