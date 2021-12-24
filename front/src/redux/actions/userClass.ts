@@ -17,11 +17,14 @@ export const getTeacherAndStudent = () => {
   };
 };
 
-export const getUserClassData = (userClass: string) => {
+export const getAllAvaliableRoles = () => {
   return async (dispatch: Dispatch<userClassActions>) => {
     try {
-      dispatch({ type: userClassActionsType.SET_USER_CLASS_LOADER, payload: true });
-      const response = await axios.get(`users/about`);
+      const response = await axios.get(`roles`);
+      dispatch({
+        type: userClassActionsType.SET_USER_CLASS_AVALIABLE_ROLES,
+        payload: response.data,
+      });
     } catch (e) {
       console.error(`Произошла ошибка` + e);
     }

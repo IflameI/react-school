@@ -44,7 +44,7 @@ export class UsersController {
     status: 200,
   })
   @Get('role')
-  addRole(@Body() addRoleDto: AddRoleDto) {
-    return this.usersService.addRole(addRoleDto);
+  changeUserRole(@Body() addRoleDto: AddRoleDto) {
+    return this.usersService.changeUserRole(addRoleDto);
   }
 }

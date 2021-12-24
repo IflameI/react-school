@@ -26,6 +26,9 @@ let RolesController = class RolesController {
     getByValue(value) {
         return this.roleService.getRoleByValue(value);
     }
+    getAllRoles() {
+        return this.roleService.getAllRoles();
+    }
 };
 __decorate([
     (0, common_1.Post)(),
@@ -41,6 +44,12 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], RolesController.prototype, "getByValue", null);
+__decorate([
+    (0, common_1.Get)(''),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], RolesController.prototype, "getAllRoles", null);
 RolesController = __decorate([
     (0, common_1.Controller)('roles'),
     __metadata("design:paramtypes", [roles_service_1.RolesService])

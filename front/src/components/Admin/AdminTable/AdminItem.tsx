@@ -1,4 +1,7 @@
+import { useState } from 'react';
+import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
 import Icon from '../../../assets/img/pencil.png';
+import classNames from 'classnames';
 
 interface IAdminItem {
   id: number;
@@ -7,23 +10,37 @@ interface IAdminItem {
 }
 
 const AdminItem: React.FC<IAdminItem> = ({ id, name, role }) => {
+  const { avaliableRoles } = useTypedSelector((state) => state.userClass);
+  const [showDropDown, setShowDropDown] = useState<boolean>(false);
+
+  const avaliableUserRoles = avaliableRoles.filter(
+    (avaliableRole) => avaliableRole.value !== role && avaliableRole.value !== 'ADMIN',
+  );
+
+  const onClickShowDropDown = () => {
+    setShowDropDown(!showDropDown);
+  };
   const onClickChangeRole = (id: number) => {};
   return (
     <tr>
       <td>{id}</td>
       <td>{name}</td>
       <td className='admin__change'>
-        <div className='admin__dropdown'>
-          <span>
+        <span
+          className={classNames('admin__dropdown', {
+            'admin__dropdown-active': showDropDown,
+          })}>
+          <span onClick={onClickShowDropDown} className='admin__icon'>
             {role} <img src={Icon} alt='icon' />
           </span>
-          <div className='admin__dropdown-content'>
+          <span className='admin__dropdown-content'>
             <ul>
-              <li>TEACHER</li>
-              <li>2</li>
+              {avaliableUserRoles.map((item) => (
+                <li>{item.value}</li>
+              ))}
             </ul>
-          </div>
-        </div>
+          </span>
+        </span>
       </td>
     </tr>
   );

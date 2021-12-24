@@ -54,11 +54,11 @@ export class UsersService {
     });
   }
 
-  async addRole(dto: AddRoleDto) {
+  async changeUserRole(dto: AddRoleDto) {
     const user = await this.userRepository.findByPk(dto.userId);
     const role = await this.roleService.getRoleByValue(dto.value);
     if (role && user) {
-      await user.$add('role', role.id);
+      await user.$set('roles', role.id);
       return dto;
     }
     throw new HttpException(

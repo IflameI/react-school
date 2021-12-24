@@ -4,11 +4,12 @@ import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
 
 const AdminTable: React.FC = () => {
-  const { getTeacherAndStudent } = useActions();
+  const { getTeacherAndStudent, getAllAvaliableRoles } = useActions();
   const { userClassData, isLoader } = useTypedSelector((state) => state.userClass);
 
   useEffect(() => {
     getTeacherAndStudent();
+    getAllAvaliableRoles();
   }, []);
   return (
     <>

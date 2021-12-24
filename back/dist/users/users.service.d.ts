@@ -19,5 +19,5 @@ export declare class UsersService {
         name: string;
         role: string;
     }[]>;
-    addRole(dto: AddRoleDto): Promise<AddRoleDto>;
+    changeUserRole(dto: AddRoleDto): Promise<AddRoleDto>;
 }

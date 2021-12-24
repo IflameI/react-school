@@ -16,5 +16,5 @@ export declare class UsersController {
         name: string;
         role: string;
     }[]>;
-    addRole(addRoleDto: AddRoleDto): Promise<AddRoleDto>;
+    changeUserRole(addRoleDto: AddRoleDto): Promise<AddRoleDto>;
 }

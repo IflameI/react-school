@@ -26,14 +26,14 @@
   &__change {
     cursor: pointer;
     &:hover {
-      span {
+      .admin__icon {
         img {
           @include anim(0.3s, 0s);
           opacity: 1;
         }
       }
     }
-    span {
+    .admin__icon {
       position: relative;
       img {
         width: 10px;
@@ -81,7 +81,9 @@
   }
   &__dropdown {
     position: relative;
+    display: block;
     &-content {
+      display: none;
       position: absolute;
       top: 20px;
       left: 0;
@@ -98,7 +100,16 @@
           &:last-child {
             margin-bottom: unset;
           }
+          &:hover {
+            @include anim(0.3s, 0s);
+            color: #666666;
+          }
         }
+      }
+    }
+    &-active {
+      .admin__dropdown-content {
+        display: block;
       }
     }
   }

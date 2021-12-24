@@ -61,11 +61,11 @@ let UsersService = class UsersService {
             return { id: item.id, name: item.name, role: item.roles[0].value };
         });
     }
-    async addRole(dto) {
+    async changeUserRole(dto) {
         const user = await this.userRepository.findByPk(dto.userId);
         const role = await this.roleService.getRoleByValue(dto.value);
         if (role && user) {
-            await user.$add('role', role.id);
+            await user.$set('roles', role.id);
             return dto;
         }
         throw new common_1.HttpException('Пользователь или роль не найдены', common_1.HttpStatus.NOT_FOUND);
