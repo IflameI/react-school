@@ -1,4 +1,4 @@
-import { AddRoleDto } from 'src/roles/dto/add-role-dto';
+import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.model';
 import { UsersService } from './users.service';
@@ -16,5 +16,5 @@ export declare class UsersController {
         name: string;
         role: string;
     }[]>;
-    changeUserRole(addRoleDto: AddRoleDto): Promise<AddRoleDto>;
+    changeUserRole(changeRoleDto: ChangeRoleDto): Promise<ChangeRoleDto>;
 }

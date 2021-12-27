@@ -10,6 +10,8 @@ type avaliableRolesType = {
   description: string;
 };
 
+export type userChangeRoleType = Omit<userClassItem, 'name'>;
+
 export interface userClassState {
   userClassData: userClassItem[];
   isLoader: boolean;
@@ -17,27 +19,35 @@ export interface userClassState {
 }
 
 export enum userClassActionsType {
-  SET_USER_CLASS_LOADER = 'SET_USER_CLASS_LOADER',
-  SET_USER_CLASS_DATA = 'SET_USER_CLASS_DATA',
-  SET_USER_CLASS_AVALIABLE_ROLES = 'SET_USER_CLASS_AVALIABLE_ROLES',
+  SET_LOADER_USER_CLASS = 'SET_LOADER_USER_CLASS',
+  SET_DATA_USER_CLASS = 'SET_DATA_USER_CLASS',
+  SET_AVALIABLE_ROLES_USER_CLASS = 'SET_AVALIABLE_ROLES_USER_CLASS',
+  SET_CHANGE_ROLE_USER_CLASS = 'SET_CHANGE_ROLE_USER_CLASS',
 }
 
-interface setUserClassLoaderType {
-  type: userClassActionsType.SET_USER_CLASS_LOADER;
+interface setLoaderUserClassType {
+  type: userClassActionsType.SET_LOADER_USER_CLASS;
   payload: boolean;
 }
 
-interface setUserClassDataType {
-  type: userClassActionsType.SET_USER_CLASS_DATA;
+interface setDataUserClassType {
+  type: userClassActionsType.SET_DATA_USER_CLASS;
   payload: userClassItem[];
 }
 
-interface setUserClassAvaliableRolesType {
-  type: userClassActionsType.SET_USER_CLASS_AVALIABLE_ROLES;
+interface setAvaliableRolesUserClassType {
+  type: userClassActionsType.SET_AVALIABLE_ROLES_USER_CLASS;
   payload: avaliableRolesType[];
 }
 
+interface setChangeRoleUserClassType {
+  type: userClassActionsType.SET_CHANGE_ROLE_USER_CLASS;
+  id: number;
+  role: string;
+}
+
 export type userClassActions =
-  | setUserClassLoaderType
-  | setUserClassDataType
-  | setUserClassAvaliableRolesType;
+  | setLoaderUserClassType
+  | setDataUserClassType
+  | setAvaliableRolesUserClassType
+  | setChangeRoleUserClassType;

@@ -34,5 +34,6 @@ export { default as NewsItem } from './NewsItem';
 export { default as CabinetTable } from './Cabinet/CabinetTable/CabinetTable';
 export { default as CabinetItem } from './Cabinet/CabinetTable/CabinetItem';
 
+export { default as AdminTableBody } from './Admin/AdminTable/AdminTableBody';
 export { default as AdminTable } from './Admin/AdminTable/AdminTable';
 export { default as AdminItem } from './Admin/AdminTable/AdminItem';

@@ -15,7 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const add_role_dto_1 = require("../roles/dto/add-role-dto");
+const jwt_auth_guard_1 = require("../auth/jwt-auth-guard");
+const roles_auth_decorator_1 = require("../auth/roles-auth-decorator");
+const roles_guard_1 = require("../auth/roles.guard");
+const change_role_dto_1 = require("../roles/dto/change-role-dto");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const users_model_1 = require("./users.model");
 const users_service_1 = require("./users.service");
@@ -32,13 +35,15 @@ let UsersController = class UsersController {
     getTeacherAndStudent() {
         return this.usersService.getTeacherAndStudent();
     }
-    changeUserRole(addRoleDto) {
-        return this.usersService.changeUserRole(addRoleDto);
+    changeUserRole(changeRoleDto) {
+        return this.usersService.changeUserRole(changeRoleDto);
     }
 };
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Создание пользователя' }),
     (0, swagger_1.ApiResponse)({ status: 200, type: users_model_1.User }),
+    (0, roles_auth_decorator_1.Roles)('ADMIN'),
+    (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -63,6 +68,8 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: 200,
     }),
+    (0, roles_auth_decorator_1.Roles)('ADMIN'),
+    (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
     (0, common_1.Get)('about'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -75,10 +82,12 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: 200,
     }),
-    (0, common_1.Get)('role'),
+    (0, roles_auth_decorator_1.Roles)('ADMIN'),
+    (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
+    (0, common_1.Post)('role'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [add_role_dto_1.AddRoleDto]),
+    __metadata("design:paramtypes", [change_role_dto_1.ChangeRoleDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "changeUserRole", null);
 UsersController = __decorate([

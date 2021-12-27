@@ -9,17 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddRoleDto = void 0;
+exports.ChangeRoleDto = void 0;
 const class_validator_1 = require("class-validator");
-class AddRoleDto {
+class ChangeRoleDto {
 }
 __decorate([
     (0, class_validator_1.IsString)({ message: 'Должно быть строкой' }),
     __metadata("design:type", String)
-], AddRoleDto.prototype, "role", void 0);
+], ChangeRoleDto.prototype, "role", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)({}, { message: 'Должно быть числом' }),
     __metadata("design:type", Number)
-], AddRoleDto.prototype, "id", void 0);
-exports.AddRoleDto = AddRoleDto;
-//# sourceMappingURL=add-role-dto.js.map
+], ChangeRoleDto.prototype, "id", void 0);
+exports.ChangeRoleDto = ChangeRoleDto;
+//# sourceMappingURL=change-role-dto.js.map

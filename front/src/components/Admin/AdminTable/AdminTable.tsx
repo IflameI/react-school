@@ -1,16 +1,6 @@
-import { useEffect } from 'react';
-import { AdminItem, Loader } from '../..';
-import { useActions } from '../../../redux/typeHooks/useActions';
-import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
+import { AdminTableBody } from '../../';
 
 const AdminTable: React.FC = () => {
-  const { getTeacherAndStudent, getAllAvaliableRoles } = useActions();
-  const { userClassData, isLoader } = useTypedSelector((state) => state.userClass);
-
-  useEffect(() => {
-    getTeacherAndStudent();
-    getAllAvaliableRoles();
-  }, []);
   return (
     <>
       <table className='admin__table'>
@@ -21,17 +11,7 @@ const AdminTable: React.FC = () => {
             <th className='admin__table-title'>РОЛЬ</th>
           </tr>
         </thead>
-        <tbody className='admin__table-body'>
-          {isLoader ? (
-            <div className='admin__loader'>
-              <Loader />
-            </div>
-          ) : (
-            userClassData.map((item, index) => (
-              <AdminItem id={index + 1} name={item.name} role={item.role} />
-            ))
-          )}
-        </tbody>
+        <AdminTableBody />
       </table>
     </>
   );

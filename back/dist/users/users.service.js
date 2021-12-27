@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
-const add_role_dto_1 = require("../roles/dto/add-role-dto");
+const change_role_dto_1 = require("../roles/dto/change-role-dto");
 const roles_service_1 = require("../roles/roles.service");
 const users_model_1 = require("./users.model");
 let UsersService = class UsersService {
@@ -62,10 +62,11 @@ let UsersService = class UsersService {
         });
     }
     async changeUserRole(dto) {
-        const user = await this.userRepository.findByPk(dto.userId);
-        const role = await this.roleService.getRoleByValue(dto.value);
+        const user = await this.userRepository.findByPk(dto.id);
+        const role = await this.roleService.getRoleByValue(dto.role);
         if (role && user) {
-            await user.$set('roles', role.id);
+            await user.$set('roles', [role.id]);
+            user.roles = [role];
             return dto;
         }
         throw new common_1.HttpException('Пользователь или роль не найдены', common_1.HttpStatus.NOT_FOUND);
