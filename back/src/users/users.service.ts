@@ -14,7 +14,7 @@ export class UsersService {
 
   async createUser(dto: CreateUserDto) {
     const user = await this.userRepository.create(dto);
-    const role = await this.roleService.getRoleByValue('USER');
+    const role = await this.roleService.getRoleByValue('STUDENT');
     await user.$set('roles', [role.id]);
     user.roles = [role];
     return user;
@@ -42,6 +42,19 @@ export class UsersService {
       name: user.name,
       userClass: user.userClass,
     };
+  }
+
+  async getStudentsByClass(userClass: string) {
+    const users = await this.userRepository.findAll({
+      where: { userClass },
+      include: { all: true },
+    });
+    const filtredUsers = users.filter(
+      (item) => item.roles[0].value !== 'TEACHER',
+    );
+    return filtredUsers.map((item) => {
+      return { id: item.id, name: item.name, subjects: item.subjects };
+    });
   }
 
   async getTeacherAndStudent() {

@@ -39,6 +39,21 @@ export const getAllAvaliableRoles = () => {
   };
 };
 
+export const getStudentsByClass = (userClass: string) => {
+  return async (dispatch: Dispatch<userClassActions>) => {
+    try {
+      const response = await axios.get(`users/usersClass/${userClass}`);
+      dispatch({
+        type: userClassActionsType.SET_DATA_USER_CLASS,
+        payload: response.data,
+      });
+      return response;
+    } catch (e) {
+      console.error(`Произошла ошибка` + e);
+    }
+  };
+};
+
 export const setChangeUserRole = (roleData: userChangeRoleType) => {
   return async (dispatch: Dispatch<userClassActions>) => {
     try {

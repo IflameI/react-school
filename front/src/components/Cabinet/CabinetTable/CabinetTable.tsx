@@ -1,4 +1,4 @@
-import CabinetItem from './CabinetItem';
+import { CabinetItem } from '../../';
 
 const CabinetTable: React.FC = () => {
   return (

@@ -16,5 +16,10 @@ export declare class UsersController {
         name: string;
         role: string;
     }[]>;
+    getStudentsByClass(params: any): Promise<{
+        id: number;
+        name: string;
+        subjects: import("../subjects/subjects.model").Subject[];
+    }[]>;
     changeUserRole(changeRoleDto: ChangeRoleDto): Promise<ChangeRoleDto>;
 }

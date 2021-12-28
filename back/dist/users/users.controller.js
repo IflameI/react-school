@@ -35,6 +35,9 @@ let UsersController = class UsersController {
     getTeacherAndStudent() {
         return this.usersService.getTeacherAndStudent();
     }
+    getStudentsByClass(params) {
+        return this.usersService.getStudentsByClass(params.class);
+    }
     changeUserRole(changeRoleDto) {
         return this.usersService.changeUserRole(changeRoleDto);
     }
@@ -75,6 +78,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getTeacherAndStudent", null);
+__decorate([
+    (0, common_1.Get)('usersClass/:class'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getStudentsByClass", null);
 __decorate([
     (0, swagger_1.ApiOperation)({
         summary: 'Выдача роли, пользователю',

@@ -22,7 +22,13 @@ const AdminTableBody = () => {
         </div>
       ) : (
         userClassData.map((item, index) => (
-          <AdminItem hiddenId={item.id} visibleId={index + 1} name={item.name} role={item.role} />
+          <AdminItem
+            key={item.id + 'key'}
+            hiddenId={item.id}
+            visibleId={index + 1}
+            name={item.name}
+            role={item.role}
+          />
         ))
       )}
     </tbody>

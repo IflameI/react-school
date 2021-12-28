@@ -14,6 +14,7 @@ const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
 const users_module_1 = require("./users/users.module");
 const roles_module_1 = require("./roles/roles.module");
+const subjects_module_1 = require("./subjects/subjects.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -43,6 +44,7 @@ AppModule = __decorate([
             }),
             users_module_1.UsersModule,
             roles_module_1.RolesModule,
+            subjects_module_1.SubjectsModule,
         ],
         controllers: [],
         providers: [],

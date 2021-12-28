@@ -10,9 +10,10 @@ export { default as ModalAuthRegister } from './ModalAuth/ModalAuthRegister';
 export { default as Loader } from './helpers/Loader/Loader';
 
 export { default as MainPage } from '../pages/MainPage';
-export { default as CabinetPage } from '../pages/CabinetPage';
-export { default as NotPermisionPage } from '../pages/NotPermisionPage';
+export { default as CabinetStudentPage } from '../pages/CabinetStudentPage';
 export { default as AdminCabinetPage } from '../pages/AdminCabinetPage';
+export { default as CabinetTeacherPage } from '../pages/CabinetTeacherPage';
+export { default as NotPermisionPage } from '../pages/NotPermisionPage';
 
 export { default as Links } from './Links/Links';
 export { default as LinkColumn } from './Links/LinkColumn';
@@ -32,7 +33,10 @@ export { default as Badge } from './Badge';
 export { default as NewsItem } from './NewsItem';
 
 export { default as CabinetTable } from './Cabinet/CabinetTable/CabinetTable';
+export { default as CabinetTeacherTable } from './Cabinet/CabinetTable/CabinetTeacherTable';
+export { default as CabinetTeacherTableBody } from './Cabinet/CabinetTable/CabinetTeacherTableBody';
 export { default as CabinetItem } from './Cabinet/CabinetTable/CabinetItem';
+export { default as CabinetTeacherItem } from './Cabinet/CabinetTable/CabinetTeacherItem';
 
 export { default as AdminTableBody } from './Admin/AdminTable/AdminTableBody';
 export { default as AdminTable } from './Admin/AdminTable/AdminTable';

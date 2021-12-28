@@ -1,7 +1,7 @@
 import { CabinetTable } from '../components';
 import { useTypedSelector } from '../redux/typeHooks/useTypedSelector';
 
-const CabinetPage: React.FC = () => {
+const CabinetStudentPage: React.FC = () => {
   const { dataUser } = useTypedSelector((state) => state.user);
   return (
     <section className='cabinet'>
@@ -23,4 +23,4 @@ const CabinetPage: React.FC = () => {
   );
 };
 
-export default CabinetPage;
+export default CabinetStudentPage;

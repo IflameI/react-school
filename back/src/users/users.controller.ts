@@ -44,6 +44,11 @@ export class UsersController {
     return this.usersService.getTeacherAndStudent();
   }
 
+  @Get('usersClass/:class')
+  getStudentsByClass(@Param() params) {
+    return this.usersService.getStudentsByClass(params.class);
+  }
+
   @ApiOperation({
     summary: 'Выдача роли, пользователю',
   })

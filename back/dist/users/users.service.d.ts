@@ -14,6 +14,11 @@ export declare class UsersService {
         name: string;
         userClass: string;
     }>;
+    getStudentsByClass(userClass: string): Promise<{
+        id: number;
+        name: string;
+        subjects: import("../subjects/subjects.model").Subject[];
+    }[]>;
     getTeacherAndStudent(): Promise<{
         id: number;
         name: string;

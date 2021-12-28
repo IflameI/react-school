@@ -1,11 +1,19 @@
 import { Routes, Route } from 'react-router';
 
-import { Header, MainPage, CabinetPage, NotPermisionPage, AdminCabinetPage } from './components';
+import {
+  Header,
+  MainPage,
+  CabinetStudentPage,
+  NotPermisionPage,
+  AdminCabinetPage,
+  CabinetTeacherPage,
+} from './components';
 import { useTypedSelector } from './redux/typeHooks/useTypedSelector';
 
 function App() {
   const { isAuth, dataUser } = useTypedSelector((state) => state.user);
-  const isRoleUser = isAuth && dataUser.role === 'USER';
+  const isRoleStudent = isAuth && dataUser.role === 'STUDENT';
+  const isRoleTeacher = isAuth && dataUser.role === 'TEACHER';
   const isRoleAdmin = isAuth && dataUser.role === 'ADMIN';
   return (
     <>
@@ -15,7 +23,15 @@ function App() {
         <Route
           path='/cabinet'
           element={
-            isRoleUser ? <CabinetPage /> : isRoleAdmin ? <AdminCabinetPage /> : <NotPermisionPage />
+            isRoleStudent ? (
+              <CabinetStudentPage />
+            ) : isRoleAdmin ? (
+              <AdminCabinetPage />
+            ) : isRoleTeacher ? (
+              <CabinetTeacherPage />
+            ) : (
+              <NotPermisionPage />
+            )
           }
         />
       </Routes>
