@@ -20,10 +20,10 @@ export interface userState {
 export enum userActionsType {
   SET_IS_AUTH = 'SET_IS_AUTH',
   SET_USER_TOKEN = 'SET_USER_TOKEN',
-  SET_USER_LOGOUT = 'SET_USER_LOGOUT',
   SET_USER_LOADER = 'SET_USER_LOADER',
   SET_USER_ERROR = 'SET_USER_ERROR',
   SET_USER_INFO = 'SET_USER_INFO',
+  SET_USER_LOGOUT = 'SET_USER_LOGOUT',
 }
 
 interface setUserIsAuthType {
@@ -40,25 +40,29 @@ interface setUserTokenType {
   payload: string | null;
 }
 
-interface setUserLoading {
+interface setUserLoadingType {
   type: userActionsType.SET_USER_LOADER;
   payload: boolean;
 }
 
-interface setUserError {
+interface setUserErrorType {
   type: userActionsType.SET_USER_ERROR;
   payload: string;
 }
 
-interface setUserInfo {
+interface setUserInfoType {
   type: userActionsType.SET_USER_INFO;
   payload: userInfo;
+}
+interface setUserLogoutType {
+  type: userActionsType.SET_USER_LOGOUT;
 }
 
 export type userActions =
   | setUserIsAuthType
   | setUserTokenType
   | setUserLogoutAuthType
-  | setUserLoading
-  | setUserError
-  | setUserInfo;
+  | setUserLoadingType
+  | setUserErrorType
+  | setUserInfoType
+  | setUserLogoutType;

@@ -1,4 +1,4 @@
-import { CabinetTeacherTableBody } from '../..';
+import { CabinetTeacherTableBody } from '../../..';
 
 const CabinetTeacherTable: React.FC = () => {
   return (

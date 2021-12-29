@@ -1,8 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+
 import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
 import { RolesService } from 'src/roles/roles.service';
+
 import { CreateUserDto } from './dto/create-user.dto';
+
 import { User } from './users.model';
 
 @Injectable()
@@ -44,7 +47,7 @@ export class UsersService {
     };
   }
 
-  async getStudentsByClass(userClass: string) {
+  async getStudentsGrade(userClass: string, subject: string) {
     const users = await this.userRepository.findAll({
       where: { userClass },
       include: { all: true },
@@ -53,7 +56,11 @@ export class UsersService {
       (item) => item.roles[0].value !== 'TEACHER',
     );
     return filtredUsers.map((item) => {
-      return { id: item.id, name: item.name, subjects: item.subjects };
+      return {
+        id: item.id,
+        name: item.name,
+        grade: item.subjects.filter((items) => items.subjectName === subject),
+      };
     });
   }
 

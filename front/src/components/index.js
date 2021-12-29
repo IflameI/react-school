@@ -33,10 +33,10 @@ export { default as Badge } from './Badge';
 export { default as NewsItem } from './NewsItem';
 
 export { default as CabinetTable } from './Cabinet/CabinetTable/CabinetTable';
-export { default as CabinetTeacherTable } from './Cabinet/CabinetTable/CabinetTeacherTable';
-export { default as CabinetTeacherTableBody } from './Cabinet/CabinetTable/CabinetTeacherTableBody';
+export { default as CabinetTeacherTable } from './Cabinet/CabinetTable/CabinetTeacher/CabinetTeacherTable';
+export { default as CabinetTeacherTableBody } from './Cabinet/CabinetTable/CabinetTeacher/CabinetTeacherTableBody';
 export { default as CabinetItem } from './Cabinet/CabinetTable/CabinetItem';
-export { default as CabinetTeacherItem } from './Cabinet/CabinetTable/CabinetTeacherItem';
+export { default as CabinetTeacherItem } from './Cabinet/CabinetTable/CabinetTeacher/CabinetTeacherItem';
 
 export { default as AdminTableBody } from './Admin/AdminTable/AdminTableBody';
 export { default as AdminTable } from './Admin/AdminTable/AdminTable';

@@ -52,14 +52,18 @@ let UsersService = class UsersService {
             userClass: user.userClass,
         };
     }
-    async getStudentsByClass(userClass) {
+    async getStudentsGrade(userClass, subject) {
         const users = await this.userRepository.findAll({
             where: { userClass },
             include: { all: true },
         });
         const filtredUsers = users.filter((item) => item.roles[0].value !== 'TEACHER');
         return filtredUsers.map((item) => {
-            return { id: item.id, name: item.name, subjects: item.subjects };
+            return {
+                id: item.id,
+                name: item.name,
+                grade: item.subjects.filter((items) => items.subjectName === subject),
+            };
         });
     }
     async getTeacherAndStudent() {

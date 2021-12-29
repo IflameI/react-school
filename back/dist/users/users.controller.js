@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const jwt_auth_guard_1 = require("../auth/jwt-auth-guard");
 const roles_auth_decorator_1 = require("../auth/roles-auth-decorator");
 const roles_guard_1 = require("../auth/roles.guard");
 const change_role_dto_1 = require("../roles/dto/change-role-dto");
@@ -35,8 +34,8 @@ let UsersController = class UsersController {
     getTeacherAndStudent() {
         return this.usersService.getTeacherAndStudent();
     }
-    getStudentsByClass(params) {
-        return this.usersService.getStudentsByClass(params.class);
+    getStudentsGrade(params) {
+        return this.usersService.getStudentsGrade(params.class, params.subject);
     }
     changeUserRole(changeRoleDto) {
         return this.usersService.changeUserRole(changeRoleDto);
@@ -79,12 +78,12 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getTeacherAndStudent", null);
 __decorate([
-    (0, common_1.Get)('usersClass/:class'),
+    (0, common_1.Get)('usersClass/:class/:subject'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "getStudentsByClass", null);
+], UsersController.prototype, "getStudentsGrade", null);
 __decorate([
     (0, swagger_1.ApiOperation)({
         summary: 'Выдача роли, пользователю',

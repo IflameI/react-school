@@ -1,10 +1,12 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
+
 import { Roles } from 'src/auth/roles-auth-decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
+
 import { CreateUserDto } from './dto/create-user.dto';
+
 import { User } from './users.model';
 import { UsersService } from './users.service';
 
@@ -44,9 +46,9 @@ export class UsersController {
     return this.usersService.getTeacherAndStudent();
   }
 
-  @Get('usersClass/:class')
-  getStudentsByClass(@Param() params) {
-    return this.usersService.getStudentsByClass(params.class);
+  @Get('usersClass/:class/:subject')
+  getStudentsGrade(@Param() params) {
+    return this.usersService.getStudentsGrade(params.class, params.subject);
   }
 
   @ApiOperation({

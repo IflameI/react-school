@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
+
 import {
   userChangeRoleType,
   userClassActions,
@@ -39,16 +40,19 @@ export const getAllAvaliableRoles = () => {
   };
 };
 
-export const getStudentsByClass = (userClass: string) => {
+export const getStudents = (userClass: string, subject: string) => {
   return async (dispatch: Dispatch<userClassActions>) => {
     try {
-      const response = await axios.get(`users/usersClass/${userClass}`);
+      dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: true });
+      const response = await axios.get(`users/usersClass/${userClass}/${subject}`);
       dispatch({
         type: userClassActionsType.SET_DATA_USER_CLASS,
         payload: response.data,
       });
+      dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: false });
       return response;
     } catch (e) {
+      dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: false });
       console.error(`Произошла ошибка` + e);
     }
   };

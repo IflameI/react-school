@@ -1,4 +1,4 @@
-import { userActions, userActionsType, userState } from '../types/userTypeRedux';
+import { userActions, userActionsType, userInfo, userState } from '../types/userTypeRedux';
 
 const initialState: userState = {
   dataUser: {
@@ -30,6 +30,9 @@ export const user = (state = initialState, action: userActions): userState => {
       return { ...state, isLoader: action.payload };
     case userActionsType.SET_USER_INFO:
       return { ...state, dataUser: action.payload };
+    case userActionsType.SET_USER_LOGOUT:
+      window.localStorage.removeItem('BearerSchool');
+      return { ...state, isAuth: false, token: null, dataUser: {} as userInfo };
     default:
       return state;
   }

@@ -1,7 +1,22 @@
+type userSubjects = {
+  id: number;
+  gradeFirstPer: number;
+  gradeSecondPer: number;
+  gradeThirdPer: number;
+  gradeFourPer: number;
+};
+
+export type subjectType = {
+  id: number;
+  subjectName: string;
+  UserSubjects: userSubjects;
+};
+
 type userClassItem = {
   id: number;
   name: string;
   role: string;
+  grade: subjectType[];
 };
 
 type avaliableRolesType = {
@@ -10,7 +25,7 @@ type avaliableRolesType = {
   description: string;
 };
 
-export type userChangeRoleType = Omit<userClassItem, 'name'>;
+export type userChangeRoleType = Omit<userClassItem, 'name' | 'grade'>;
 
 export interface userClassState {
   userClassData: userClassItem[];
