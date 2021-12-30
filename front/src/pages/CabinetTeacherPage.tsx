@@ -1,4 +1,4 @@
-import { CabinetTeacherTable } from '../components';
+import { CabinetTeacherTable, CabinetTeacherTabs } from '../components';
 import { useTypedSelector } from '../redux/typeHooks/useTypedSelector';
 
 const CabinetTeacherPage: React.FC = () => {
@@ -13,6 +13,7 @@ const CabinetTeacherPage: React.FC = () => {
         <p className='cabinet__main-class'>
           Класс учителя: <span>{dataUser.userClass}</span>
         </p>
+        <CabinetTeacherTabs />
         <div className='cabinet__row'>
           <div className='cabinet__table-wrap'>
             <CabinetTeacherTable />

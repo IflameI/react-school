@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/sequelize';
 
 import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
 import { RolesService } from 'src/roles/roles.service';
+import { ChangeUserGradeDto } from 'src/subjects/dto/change-user-grade-dto';
+import { SubjectsService } from 'src/subjects/subjects.service';
 
 import { CreateUserDto } from './dto/create-user.dto';
 
@@ -13,6 +15,7 @@ export class UsersService {
   constructor(
     @InjectModel(User) private userRepository: typeof User,
     private roleService: RolesService,
+    private subjectService: SubjectsService,
   ) {}
 
   async createUser(dto: CreateUserDto) {
@@ -87,4 +90,19 @@ export class UsersService {
       HttpStatus.NOT_FOUND,
     );
   }
+
+  // async changeUserGrade(dto: ChangeUserGradeDto) {
+  //   const user = await this.userRepository.findByPk(dto.userId);
+  //   const subject = await this.subjectService.getSubjectByName(dto.subjectName);
+  //   const grade = await this.subjectService.getGradeById(dto.userId);
+  //   const test = grade.filter((item) => item.subjectId === subject.id);
+  //   if(test){
+  //     await user.$set('subjects',test)
+  //   }
+  //   return test;
+  //   throw new HttpException(
+  //     'Пользователь или роль не найдены',
+  //     HttpStatus.NOT_FOUND,
+  //   );
+  // }
 }

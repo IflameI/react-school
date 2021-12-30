@@ -75,3 +75,39 @@
     font-size: 14px;
   }
 }
+
+.tabs-cabinet {
+  &__row {
+    display: flex;
+    margin: 0 -10px;
+    padding-top: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  &__item {
+    flex: 0 1 10%;
+    padding: 0 10px;
+  }
+  &__button {
+    button {
+      display: inline-block;
+      height: 32px;
+      padding: 0px 25px;
+      background-color: #147fc3;
+      &:hover {
+        @include anim(0.3s, 0s);
+        background: #c1c3cf;
+      }
+      position: relative;
+      font-size: 14px;
+      line-height: 22px;
+      color: #fff;
+      font-weight: 700;
+    }
+  }
+}
+.tabs-cabinet__button.active {
+  button {
+    background: #c1c3cf;
+  }
+}

@@ -17,11 +17,14 @@ const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const change_role_dto_1 = require("../roles/dto/change-role-dto");
 const roles_service_1 = require("../roles/roles.service");
+const change_user_grade_dto_1 = require("../subjects/dto/change-user-grade-dto");
+const subjects_service_1 = require("../subjects/subjects.service");
 const users_model_1 = require("./users.model");
 let UsersService = class UsersService {
-    constructor(userRepository, roleService) {
+    constructor(userRepository, roleService, subjectService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
+        this.subjectService = subjectService;
     }
     async createUser(dto) {
         const user = await this.userRepository.create(dto);
@@ -89,7 +92,8 @@ let UsersService = class UsersService {
 UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, sequelize_1.InjectModel)(users_model_1.User)),
-    __metadata("design:paramtypes", [Object, roles_service_1.RolesService])
+    __metadata("design:paramtypes", [Object, roles_service_1.RolesService,
+        subjects_service_1.SubjectsService])
 ], UsersService);
 exports.UsersService = UsersService;
 //# sourceMappingURL=users.service.js.map

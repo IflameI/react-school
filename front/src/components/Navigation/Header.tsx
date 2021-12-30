@@ -6,6 +6,8 @@ import VKIcon from '../../assets/img/i_01.svg';
 import InstIcon from '../../assets/img/i_02.svg';
 import OKIcon from '../../assets/img/i_03.svg';
 
+import { useTypedSelector } from '../../redux/typeHooks/useTypedSelector';
+
 const Header: React.FC = () => {
   return (
     <header className='header'>

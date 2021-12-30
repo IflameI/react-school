@@ -16,19 +16,34 @@ exports.SubjectsService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const subjects_model_1 = require("./subjects.model");
+const user_subjects_model_1 = require("./user-subjects.model");
 let SubjectsService = class SubjectsService {
-    constructor(subjectsRepository) {
+    constructor(subjectsRepository, userSubjectsRepository) {
         this.subjectsRepository = subjectsRepository;
+        this.userSubjectsRepository = userSubjectsRepository;
     }
     async getAllSubjects() {
         const subjects = await this.subjectsRepository.findAll();
         return subjects;
     }
+    async getSubjectByName(subjectName) {
+        const role = await this.subjectsRepository.findOne({
+            where: { subjectName },
+        });
+        return role;
+    }
+    async getGradeById(userId) {
+        const subject = await this.userSubjectsRepository.findAll({
+            where: { userId },
+        });
+        return subject;
+    }
 };
 SubjectsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, sequelize_1.InjectModel)(subjects_model_1.Subject)),
-    __metadata("design:paramtypes", [Object])
+    __param(1, (0, sequelize_1.InjectModel)(user_subjects_model_1.UserSubjects)),
+    __metadata("design:paramtypes", [Object, Object])
 ], SubjectsService);
 exports.SubjectsService = SubjectsService;
 //# sourceMappingURL=subjects.service.js.map

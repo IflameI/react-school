@@ -11,7 +11,7 @@ const CabinetTeacherTableBody: React.FC = () => {
   const { getStudents } = useActions();
 
   useEffect(() => {
-    getStudents(dataUser.userClass, 'Алгебра');
+    getStudents(dataUser.userClass, 'Физика');
   }, []);
   return (
     <tbody>
@@ -31,7 +31,6 @@ const CabinetTeacherTableBody: React.FC = () => {
                 gradeTwo={item.grade[0].UserSubjects.gradeSecondPer}
                 gradeThree={item.grade[0].UserSubjects.gradeThirdPer}
                 gradeFour={item.grade[0].UserSubjects.gradeFourPer}
-                subject={item.grade[0].subjectName}
               />
             ),
         )

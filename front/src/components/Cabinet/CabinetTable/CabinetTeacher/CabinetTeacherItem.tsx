@@ -2,7 +2,6 @@ interface ICabinetTeacherItem {
   hiddenId: number;
   name: string;
   visibleId: number;
-  subject: string;
   gradeOne: number;
   gradeTwo: number;
   gradeThree: number;
@@ -10,7 +9,6 @@ interface ICabinetTeacherItem {
 }
 
 const CabinetTeacherItem: React.FC<ICabinetTeacherItem> = ({
-  subject,
   gradeOne,
   gradeFour,
   gradeThree,
@@ -24,7 +22,6 @@ const CabinetTeacherItem: React.FC<ICabinetTeacherItem> = ({
     <tr>
       <td>{visibleId}</td>
       <td>{name}</td>
-      <td>{subject}</td>
       <td>{gradeOne}</td>
       <td>{gradeTwo}</td>
       <td>{gradeThree}</td>

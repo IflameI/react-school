@@ -7,7 +7,6 @@ const CabinetTeacherTable: React.FC = () => {
         <tr className='cabinet__head'>
           <th className='cabinet__title'>№</th>
           <th className='cabinet__title'>Имя ученика</th>
-          <th className='cabinet__title'>Предмет</th>
           <th className='cabinet__title'>1 чтв</th>
           <th className='cabinet__title'>2 чтв</th>
           <th className='cabinet__title'>3 чтв</th>

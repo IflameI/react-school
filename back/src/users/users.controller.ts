@@ -4,6 +4,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/roles-auth-decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
+import { ChangeUserGradeDto } from 'src/subjects/dto/change-user-grade-dto';
 
 import { CreateUserDto } from './dto/create-user.dto';
 
@@ -63,4 +64,9 @@ export class UsersController {
   changeUserRole(@Body() changeRoleDto: ChangeRoleDto) {
     return this.usersService.changeUserRole(changeRoleDto);
   }
+
+  // @Post('grade')
+  // changeUserGrade(@Body() ChangeUserGradeDto: ChangeUserGradeDto) {
+  //   return this.usersService.changeUserGrade(ChangeUserGradeDto);
+  // }
 }

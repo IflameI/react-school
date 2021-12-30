@@ -18,6 +18,7 @@ const swagger_1 = require("@nestjs/swagger");
 const roles_auth_decorator_1 = require("../auth/roles-auth-decorator");
 const roles_guard_1 = require("../auth/roles.guard");
 const change_role_dto_1 = require("../roles/dto/change-role-dto");
+const change_user_grade_dto_1 = require("../subjects/dto/change-user-grade-dto");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const users_model_1 = require("./users.model");
 const users_service_1 = require("./users.service");
