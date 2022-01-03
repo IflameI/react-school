@@ -41,6 +41,9 @@ let UsersController = class UsersController {
     changeUserRole(changeRoleDto) {
         return this.usersService.changeUserRole(changeRoleDto);
     }
+    changeUserGrade(ChangeUserGradeDto) {
+        return this.usersService.changeUserGrade(ChangeUserGradeDto);
+    }
 };
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Создание пользователя' }),
@@ -100,6 +103,13 @@ __decorate([
     __metadata("design:paramtypes", [change_role_dto_1.ChangeRoleDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "changeUserRole", null);
+__decorate([
+    (0, common_1.Post)('grade'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [change_user_grade_dto_1.ChangeUserGradeDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "changeUserGrade", null);
 UsersController = __decorate([
     (0, swagger_1.ApiTags)('Пользователи'),
     (0, common_1.Controller)('users'),

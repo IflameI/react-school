@@ -91,18 +91,22 @@ export class UsersService {
     );
   }
 
-  // async changeUserGrade(dto: ChangeUserGradeDto) {
-  //   const user = await this.userRepository.findByPk(dto.userId);
-  //   const subject = await this.subjectService.getSubjectByName(dto.subjectName);
-  //   const grade = await this.subjectService.getGradeById(dto.userId);
-  //   const test = grade.filter((item) => item.subjectId === subject.id);
-  //   if(test){
-  //     await user.$set('subjects',test)
-  //   }
-  //   return test;
-  //   throw new HttpException(
-  //     'Пользователь или роль не найдены',
-  //     HttpStatus.NOT_FOUND,
-  //   );
-  // }
+  async changeUserGrade(dto: ChangeUserGradeDto) {
+    const user = await this.userRepository.findByPk(dto.userId, {
+      include: { all: true },
+    });
+    let userGrade = await this.subjectService.getGradeById(dto.userId);
+    // let subject: any = user.subjects.filter(
+    //   (item) => item.subjectName === dto.subjectName,
+    // );
+    userGrade[0][dto.period] = dto.grade;
+    user.changed('subjects', true);
+    console.log(user.changed());
+    user.save();
+    return userGrade[0];
+    throw new HttpException(
+      'Пользователь или роль не найдены',
+      HttpStatus.NOT_FOUND,
+    );
+  }
 }

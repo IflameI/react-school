@@ -29,6 +29,7 @@ let SubjectsService = class SubjectsService {
     async getSubjectByName(subjectName) {
         const role = await this.subjectsRepository.findOne({
             where: { subjectName },
+            include: { all: true },
         });
         return role;
     }

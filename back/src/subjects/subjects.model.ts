@@ -5,6 +5,7 @@ import {
   Column,
   DataType,
   BelongsToMany,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { User } from 'src/users/users.model';
 import { UserSubjects } from './user-subjects.model';

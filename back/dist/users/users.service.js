@@ -88,6 +88,18 @@ let UsersService = class UsersService {
         }
         throw new common_1.HttpException('Пользователь или роль не найдены', common_1.HttpStatus.NOT_FOUND);
     }
+    async changeUserGrade(dto) {
+        const user = await this.userRepository.findByPk(dto.userId, {
+            include: { all: true },
+        });
+        let userGrade = await this.subjectService.getGradeById(dto.userId);
+        userGrade[0][dto.period] = dto.grade;
+        user.changed('subjects', true);
+        console.log(user.changed());
+        user.save();
+        return userGrade[0];
+        throw new common_1.HttpException('Пользователь или роль не найдены', common_1.HttpStatus.NOT_FOUND);
+    }
 };
 UsersService = __decorate([
     (0, common_1.Injectable)(),

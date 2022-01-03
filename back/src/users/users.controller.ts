@@ -65,8 +65,8 @@ export class UsersController {
     return this.usersService.changeUserRole(changeRoleDto);
   }
 
-  // @Post('grade')
-  // changeUserGrade(@Body() ChangeUserGradeDto: ChangeUserGradeDto) {
-  //   return this.usersService.changeUserGrade(ChangeUserGradeDto);
-  // }
+  @Post('grade')
+  changeUserGrade(@Body() ChangeUserGradeDto: ChangeUserGradeDto) {
+    return this.usersService.changeUserGrade(ChangeUserGradeDto);
+  }
 }

@@ -1,5 +1,6 @@
 import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
 import { RolesService } from 'src/roles/roles.service';
+import { ChangeUserGradeDto } from 'src/subjects/dto/change-user-grade-dto';
 import { SubjectsService } from 'src/subjects/subjects.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.model';
@@ -27,4 +28,5 @@ export declare class UsersService {
         role: string;
     }[]>;
     changeUserRole(dto: ChangeRoleDto): Promise<ChangeRoleDto>;
+    changeUserGrade(dto: ChangeUserGradeDto): Promise<import("../subjects/user-subjects.model").UserSubjects>;
 }
