@@ -1,3 +1,5 @@
+import { CabinetTeacherGradeItem } from '../../../';
+
 interface ICabinetTeacherItem {
   hiddenId: number;
   name: string;
@@ -18,14 +20,35 @@ const CabinetTeacherItem: React.FC<ICabinetTeacherItem> = ({
   name,
 }) => {
   const AvergeGrade = Math.round((gradeOne + gradeTwo + gradeThree + gradeFour) / 4);
+  const allGrade = [
+    {
+      periodName: 'gradeFirstPer',
+      periodValue: gradeOne,
+    },
+    {
+      periodName: 'gradeSecondPer',
+      periodValue: gradeTwo,
+    },
+    {
+      periodName: 'gradeThirdPer',
+      periodValue: gradeThree,
+    },
+    {
+      periodName: 'gradeFourPer',
+      periodValue: gradeFour,
+    },
+  ];
   return (
     <tr>
       <td>{visibleId}</td>
       <td>{name}</td>
-      <td>{gradeOne}</td>
-      <td>{gradeTwo}</td>
-      <td>{gradeThree}</td>
-      <td>{gradeFour}</td>
+      {allGrade.map((item) => (
+        <CabinetTeacherGradeItem
+          grade={item.periodValue}
+          namePeriod={item.periodName}
+          hiddenId={hiddenId}
+        />
+      ))}
       <td>{AvergeGrade}</td>
     </tr>
   );

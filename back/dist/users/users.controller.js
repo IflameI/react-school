@@ -105,6 +105,8 @@ __decorate([
 ], UsersController.prototype, "changeUserRole", null);
 __decorate([
     (0, common_1.Post)('grade'),
+    (0, roles_auth_decorator_1.Roles)('TEACHER'),
+    (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [change_user_grade_dto_1.ChangeUserGradeDto]),

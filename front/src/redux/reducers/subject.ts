@@ -1,6 +1,6 @@
 import { subjectsActions, subjectsActionsType, subjectsState } from '../types/subjectTypeRedux';
 
-const initialState: subjectsState = {
+const initialState: Readonly<subjectsState> = {
   isLoader: false,
   error: '',
   subjectsData: [],

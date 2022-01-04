@@ -1,6 +1,6 @@
 import { userActions, userActionsType, userInfo, userState } from '../types/userTypeRedux';
 
-const initialState: userState = {
+const initialState: Readonly<userState> = {
   dataUser: {
     role: '',
     name: '',

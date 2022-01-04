@@ -8,10 +8,13 @@ import {
   AdminCabinetPage,
   CabinetTeacherPage,
 } from './components';
+
 import { useTypedSelector } from './redux/typeHooks/useTypedSelector';
 
 function App() {
+  //TODO: Доделать ux часть  таблиц.
   const { isAuth, dataUser } = useTypedSelector((state) => state.user);
+
   const isRoleStudent = isAuth && dataUser.role === 'STUDENT';
   const isRoleTeacher = isAuth && dataUser.role === 'TEACHER';
   const isRoleAdmin = isAuth && dataUser.role === 'ADMIN';

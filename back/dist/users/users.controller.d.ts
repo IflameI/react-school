@@ -20,8 +20,11 @@ export declare class UsersController {
     getStudentsGrade(params: any): Promise<{
         id: number;
         name: string;
-        grade: import("../subjects/subjects.model").Subject[];
+        grade: import("../subjects/subjects.model").Subject;
     }[]>;
     changeUserRole(changeRoleDto: ChangeRoleDto): Promise<ChangeRoleDto>;
-    changeUserGrade(ChangeUserGradeDto: ChangeUserGradeDto): Promise<import("../subjects/user-subjects.model").UserSubjects>;
+    changeUserGrade(ChangeUserGradeDto: ChangeUserGradeDto): Promise<{
+        id: any;
+        grade: any;
+    }[]>;
 }

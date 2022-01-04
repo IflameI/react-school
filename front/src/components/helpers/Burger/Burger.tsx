@@ -5,7 +5,7 @@ import RightNav from './RightNav';
 
 const Burger = () => {
   const [open, setOpen] = useState(false);
-  const burgerRef: any = useRef();
+  const burgerRef = useRef<HTMLHeadingElement>(null);
 
   const handleOutsideClick = (event: any) => {
     const path = event.path || (event.composedPath && event.composedPath());
@@ -16,6 +16,7 @@ const Burger = () => {
 
   useEffect(() => {
     document.body.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
   }, []);
   return (
     <>

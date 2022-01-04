@@ -1,14 +1,15 @@
 import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
 import { RolesService } from 'src/roles/roles.service';
 import { ChangeUserGradeDto } from 'src/subjects/dto/change-user-grade-dto';
-import { SubjectsService } from 'src/subjects/subjects.service';
+import { Subject } from 'src/subjects/subjects.model';
+import { UserSubjects } from 'src/subjects/user-subjects.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.model';
 export declare class UsersService {
     private userRepository;
     private roleService;
-    private subjectService;
-    constructor(userRepository: typeof User, roleService: RolesService, subjectService: SubjectsService);
+    private userSubjectsRepository;
+    constructor(userRepository: typeof User, roleService: RolesService, userSubjectsRepository: typeof UserSubjects);
     createUser(dto: CreateUserDto): Promise<User>;
     getAllUsers(): Promise<User[]>;
     getUserByEmail(email: string): Promise<User>;
@@ -20,7 +21,7 @@ export declare class UsersService {
     getStudentsGrade(userClass: string, subject: string): Promise<{
         id: number;
         name: string;
-        grade: import("../subjects/subjects.model").Subject[];
+        grade: Subject;
     }[]>;
     getTeacherAndStudent(): Promise<{
         id: number;
@@ -28,5 +29,8 @@ export declare class UsersService {
         role: string;
     }[]>;
     changeUserRole(dto: ChangeRoleDto): Promise<ChangeRoleDto>;
-    changeUserGrade(dto: ChangeUserGradeDto): Promise<import("../subjects/user-subjects.model").UserSubjects>;
+    changeUserGrade(dto: ChangeUserGradeDto): Promise<{
+        id: any;
+        grade: any;
+    }[]>;
 }

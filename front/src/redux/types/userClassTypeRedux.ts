@@ -16,7 +16,7 @@ type userClassItem = {
   id: number;
   name: string;
   role: string;
-  grade: subjectType[];
+  grade: subjectType;
 };
 
 type avaliableRolesType = {
@@ -26,6 +26,12 @@ type avaliableRolesType = {
 };
 
 export type userChangeRoleType = Omit<userClassItem, 'name' | 'grade'>;
+export type userChangeGradeType = {
+  userId: number;
+  subjectName: string;
+  grade: number | string;
+  period: string;
+};
 
 export interface userClassState {
   userClassData: userClassItem[];
@@ -38,6 +44,7 @@ export enum userClassActionsType {
   SET_DATA_USER_CLASS = 'SET_DATA_USER_CLASS',
   SET_AVALIABLE_ROLES_USER_CLASS = 'SET_AVALIABLE_ROLES_USER_CLASS',
   SET_CHANGE_ROLE_USER_CLASS = 'SET_CHANGE_ROLE_USER_CLASS',
+  SET_CHANGE_GRADE_USER_CLASS = 'SET_CHANGE_GRADE_USER_CLASS',
 }
 
 interface setLoaderUserClassType {
@@ -61,8 +68,15 @@ interface setChangeRoleUserClassType {
   role: string;
 }
 
+interface setChangeGradeUserClassType {
+  type: userClassActionsType.SET_CHANGE_GRADE_USER_CLASS;
+  id: number;
+  grade: any;
+}
+
 export type userClassActions =
   | setLoaderUserClassType
   | setDataUserClassType
   | setAvaliableRolesUserClassType
-  | setChangeRoleUserClassType;
+  | setChangeRoleUserClassType
+  | setChangeGradeUserClassType;

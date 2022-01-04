@@ -4,7 +4,9 @@ import { InjectModel } from '@nestjs/sequelize';
 import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
 import { RolesService } from 'src/roles/roles.service';
 import { ChangeUserGradeDto } from 'src/subjects/dto/change-user-grade-dto';
+import { Subject } from 'src/subjects/subjects.model';
 import { SubjectsService } from 'src/subjects/subjects.service';
+import { UserSubjects } from 'src/subjects/user-subjects.model';
 
 import { CreateUserDto } from './dto/create-user.dto';
 
@@ -15,7 +17,8 @@ export class UsersService {
   constructor(
     @InjectModel(User) private userRepository: typeof User,
     private roleService: RolesService,
-    private subjectService: SubjectsService,
+    @InjectModel(UserSubjects)
+    private userSubjectsRepository: typeof UserSubjects,
   ) {}
 
   async createUser(dto: CreateUserDto) {
@@ -59,10 +62,13 @@ export class UsersService {
       (item) => item.roles[0].value !== 'TEACHER',
     );
     return filtredUsers.map((item) => {
+      const filtredGrade = item.subjects.filter(
+        (items) => items.subjectName === subject,
+      );
       return {
         id: item.id,
         name: item.name,
-        grade: item.subjects.filter((items) => items.subjectName === subject),
+        grade: filtredGrade[0],
       };
     });
   }
@@ -78,6 +84,7 @@ export class UsersService {
   }
 
   async changeUserRole(dto: ChangeRoleDto) {
+    //need refactor
     const user = await this.userRepository.findByPk(dto.id);
     const role = await this.roleService.getRoleByValue(dto.role);
     if (role && user) {
@@ -92,20 +99,27 @@ export class UsersService {
   }
 
   async changeUserGrade(dto: ChangeUserGradeDto) {
+    const userId = dto.userId;
     const user = await this.userRepository.findByPk(dto.userId, {
       include: { all: true },
     });
-    let userGrade = await this.subjectService.getGradeById(dto.userId);
-    // let subject: any = user.subjects.filter(
-    //   (item) => item.subjectName === dto.subjectName,
-    // );
-    userGrade[0][dto.period] = dto.grade;
-    user.changed('subjects', true);
-    console.log(user.changed());
-    user.save();
-    return userGrade[0];
+    let subject = user.subjects.filter(
+      (item) => item.subjectName === dto.subjectName,
+    );
+    let userGrade = await this.userSubjectsRepository.findOne({
+      where: { userId, subjectId: subject[0].id },
+    });
+
+    if (user && userGrade) {
+      userGrade[dto.period] = dto.grade;
+      userGrade.save();
+      return subject.map((item: any) => {
+        item.UserSubjects[dto.period] = dto.grade;
+        return { id: item.UserSubjects.userId, grade: item };
+      });
+    }
     throw new HttpException(
-      'Пользователь или роль не найдены',
+      'Пользователь или оценка не найдены',
       HttpStatus.NOT_FOUND,
     );
   }

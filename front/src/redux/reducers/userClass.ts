@@ -4,7 +4,7 @@ import {
   userClassState,
 } from '../types/userClassTypeRedux';
 
-const initialState: userClassState = {
+const initialState: Readonly<userClassState> = {
   userClassData: [],
   isLoader: false,
   avaliableRoles: [],
@@ -23,6 +23,13 @@ export const userClass = (state = initialState, action: userClassActions): userC
         ...state,
         userClassData: state.userClassData.map((item) =>
           item.id === action.id ? { ...item, role: action.role } : item,
+        ),
+      };
+    case userClassActionsType.SET_CHANGE_GRADE_USER_CLASS:
+      return {
+        ...state,
+        userClassData: state.userClassData.map((item) =>
+          item.id === action.id ? { ...item, grade: action.grade } : item,
         ),
       };
     default:

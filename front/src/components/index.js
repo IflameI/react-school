@@ -42,6 +42,7 @@ export { default as CabinetTeacherTable } from './Cabinet/CabinetTable/CabinetTe
 export { default as CabinetTeacherTableBody } from './Cabinet/CabinetTable/CabinetTeacher/CabinetTeacherTableBody';
 export { default as CabinetItem } from './Cabinet/CabinetTable/CabinetItem';
 export { default as CabinetTeacherItem } from './Cabinet/CabinetTable/CabinetTeacher/CabinetTeacherItem';
+export { default as CabinetTeacherGradeItem } from './Cabinet/CabinetTable/CabinetTeacher/CabinetTeacherGradeItem';
 
 export { default as AdminTableBody } from './Admin/AdminTable/AdminTableBody';
 export { default as AdminTable } from './Admin/AdminTable/AdminTable';

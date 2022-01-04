@@ -14,7 +14,7 @@ const CabinetTeacherTableBody: React.FC = () => {
     getStudents(dataUser.userClass, 'Физика');
   }, []);
   return (
-    <tbody>
+    <tbody className='cabinet__tbody'>
       {isLoader ? (
         <div className='admin__loader'>
           <Loader />
@@ -27,10 +27,10 @@ const CabinetTeacherTableBody: React.FC = () => {
                 hiddenId={item.id}
                 visibleId={index + 1}
                 name={item.name}
-                gradeOne={item.grade[0].UserSubjects.gradeFirstPer}
-                gradeTwo={item.grade[0].UserSubjects.gradeSecondPer}
-                gradeThree={item.grade[0].UserSubjects.gradeThirdPer}
-                gradeFour={item.grade[0].UserSubjects.gradeFourPer}
+                gradeOne={item.grade.UserSubjects.gradeFirstPer}
+                gradeTwo={item.grade.UserSubjects.gradeSecondPer}
+                gradeThree={item.grade.UserSubjects.gradeThirdPer}
+                gradeFour={item.grade.UserSubjects.gradeFourPer}
               />
             ),
         )

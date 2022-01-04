@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Dispatch } from 'redux';
 
 import {
+  userChangeGradeType,
   userChangeRoleType,
   userClassActions,
   userClassActionsType,
@@ -71,6 +72,29 @@ export const setChangeUserRole = (roleData: userChangeRoleType) => {
         type: userClassActionsType.SET_CHANGE_ROLE_USER_CLASS,
         id: response.data.id,
         role: response.data.role,
+      });
+      dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: false });
+      return response;
+    } catch (e) {
+      dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: false });
+      console.error(`Произошла ошибка` + e);
+    }
+  };
+};
+
+export const setChangeUserGrade = (gradeData: userChangeGradeType) => {
+  return async (dispatch: Dispatch<userClassActions>) => {
+    try {
+      dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: true });
+      const response = await axios.post(`users/grade`, gradeData, {
+        headers: {
+          Authorization: 'Bearer ' + window.localStorage.BearerSchool,
+        },
+      });
+      dispatch({
+        type: userClassActionsType.SET_CHANGE_GRADE_USER_CLASS,
+        id: response.data[0].id,
+        grade: response.data[0].grade,
       });
       dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: false });
       return response;
