@@ -1,7 +1,6 @@
 import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
 import { RolesService } from 'src/roles/roles.service';
 import { ChangeUserGradeDto } from 'src/subjects/dto/change-user-grade-dto';
-import { Subject } from 'src/subjects/subjects.model';
 import { UserSubjects } from 'src/subjects/user-subjects.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.model';
@@ -21,7 +20,7 @@ export declare class UsersService {
     getStudentsGrade(userClass: string, subject: string): Promise<{
         id: number;
         name: string;
-        grade: Subject;
+        grade: import("../subjects/subjects.model").Subject;
     }[]>;
     getTeacherAndStudent(): Promise<{
         id: number;

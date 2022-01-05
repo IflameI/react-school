@@ -24,7 +24,7 @@ const CabinetTeacherGradeItem: React.FC<ICabinetTeacherGradeItem> = ({
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
   const subjectName = userClassData[0].grade.subjectName;
 
-  const onClickChangeRole = (gradeSet: string | number) => {
+  const onClickChangeGrade = (gradeSet: string | number) => {
     setChangeUserGrade({ userId: hiddenId, subjectName, period: namePeriod, grade: gradeSet });
   };
 
@@ -43,7 +43,7 @@ const CabinetTeacherGradeItem: React.FC<ICabinetTeacherGradeItem> = ({
         <span className='admin__dropdown-content'>
           <ul>
             {avaliableGrade.map((item) => (
-              <li onClick={() => onClickChangeRole(item)}>{item}</li>
+              <li onClick={() => onClickChangeGrade(item)}>{item}</li>
             ))}
           </ul>
         </span>

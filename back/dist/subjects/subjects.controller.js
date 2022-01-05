@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SubjectsController = void 0;
 const common_1 = require("@nestjs/common");
@@ -19,6 +22,9 @@ let SubjectsController = class SubjectsController {
     getAllSubjects() {
         return this.subjectsService.getAllSubjects();
     }
+    createDefaultGrade(params) {
+        return this.subjectsService.createDefaultGrade(params.email);
+    }
 };
 __decorate([
     (0, common_1.Get)(''),
@@ -26,6 +32,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], SubjectsController.prototype, "getAllSubjects", null);
+__decorate([
+    (0, common_1.Get)('defaultGrade/:email'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], SubjectsController.prototype, "createDefaultGrade", null);
 SubjectsController = __decorate([
     (0, common_1.Controller)('subjects'),
     __metadata("design:paramtypes", [subjects_service_1.SubjectsService])

@@ -9,6 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SubjectsModule = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
+const users_model_1 = require("../users/users.model");
+const users_module_1 = require("../users/users.module");
 const subjects_controller_1 = require("./subjects.controller");
 const subjects_model_1 = require("./subjects.model");
 const subjects_service_1 = require("./subjects.service");
@@ -19,7 +21,10 @@ SubjectsModule = __decorate([
     (0, common_1.Module)({
         controllers: [subjects_controller_1.SubjectsController],
         providers: [subjects_service_1.SubjectsService],
-        imports: [sequelize_1.SequelizeModule.forFeature([subjects_model_1.Subject, user_subjects_model_1.UserSubjects])],
+        imports: [
+            sequelize_1.SequelizeModule.forFeature([subjects_model_1.Subject, user_subjects_model_1.UserSubjects, users_model_1.User]),
+            (0, common_1.forwardRef)(() => users_module_1.UsersModule),
+        ],
         exports: [subjects_service_1.SubjectsService],
     })
 ], SubjectsModule);

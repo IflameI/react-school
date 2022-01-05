@@ -21,7 +21,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "name", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: '5A', description: 'Класс ученика' }),
+    (0, swagger_1.ApiProperty)({ example: '5A', description: 'Класс пользователя' }),
     (0, class_validator_1.IsString)({ message: 'Должно быть строкой' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)

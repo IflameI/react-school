@@ -4,8 +4,6 @@ import { InjectModel } from '@nestjs/sequelize';
 import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
 import { RolesService } from 'src/roles/roles.service';
 import { ChangeUserGradeDto } from 'src/subjects/dto/change-user-grade-dto';
-import { Subject } from 'src/subjects/subjects.model';
-import { SubjectsService } from 'src/subjects/subjects.service';
 import { UserSubjects } from 'src/subjects/user-subjects.model';
 
 import { CreateUserDto } from './dto/create-user.dto';

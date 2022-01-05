@@ -11,9 +11,18 @@ interface IModalAuthRegister {
   setAuthStatus: Dispatcher<'login' | 'register'>;
 }
 
+enum ClassEnum {
+  class1 = '5А',
+  class2 = '6А',
+  class3 = '7А',
+  class4 = '8А',
+  class5 = '9А',
+}
+
 type ModalInputs = {
   email: string;
   name: string;
+  userClass: ClassEnum;
   password: string;
 };
 
@@ -89,6 +98,16 @@ const ModalAuthRegister: React.FC<IModalAuthRegister> = ({ setModalActive, setAu
               {errors.email && errors.email.type === 'pattern' && (
                 <span className='auth__error'>{errors.email.message}</span>
               )}
+            </div>
+            <div className='modal__input'>
+              <label>Ваш класс</label>
+              <select {...register('userClass', { required: true })}>
+                <option value='5А'>5А</option>
+                <option value='6А'>6А</option>
+                <option value='7А'>7А</option>
+                <option value='8А'>8А</option>
+                <option value='9А'>9А</option>
+              </select>
             </div>
             <div className='modal__input'>
               <label>Ваш пароль</label>

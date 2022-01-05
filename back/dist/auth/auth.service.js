@@ -16,9 +16,11 @@ const create_user_dto_1 = require("../users/dto/create-user.dto");
 const users_service_1 = require("../users/users.service");
 const bcrypt = require("bcryptjs");
 const users_model_1 = require("../users/users.model");
+const subjects_service_1 = require("../subjects/subjects.service");
 let AuthService = class AuthService {
-    constructor(userService, jwtService) {
+    constructor(userService, subjectsSerivce, jwtService) {
         this.userService = userService;
+        this.subjectsSerivce = subjectsSerivce;
         this.jwtService = jwtService;
     }
     async login(userDto) {
@@ -32,6 +34,7 @@ let AuthService = class AuthService {
         }
         const hashPassword = await bcrypt.hash(userDto.password, 5);
         const user = await this.userService.createUser(Object.assign(Object.assign({}, userDto), { password: hashPassword }));
+        await this.subjectsSerivce.createDefaultGrade(userDto.email);
         return this.generateToken(user);
     }
     async generateToken(user) {
@@ -59,6 +62,7 @@ let AuthService = class AuthService {
 AuthService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [users_service_1.UsersService,
+        subjects_service_1.SubjectsService,
         jwt_1.JwtService])
 ], AuthService);
 exports.AuthService = AuthService;

@@ -11,11 +11,13 @@ import { UsersService } from 'src/users/users.service';
 
 import * as bcrypt from 'bcryptjs';
 import { User } from 'src/users/users.model';
+import { SubjectsService } from 'src/subjects/subjects.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private userService: UsersService,
+    private subjectsSerivce: SubjectsService,
     private jwtService: JwtService,
   ) {}
 
@@ -36,6 +38,7 @@ export class AuthService {
       ...userDto,
       password: hashPassword,
     });
+    await this.subjectsSerivce.createDefaultGrade(userDto.email);
     return this.generateToken(user);
   }
 

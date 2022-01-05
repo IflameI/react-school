@@ -6,7 +6,7 @@ export class CreateUserDto {
   @IsString({ message: 'Должно быть строкой' })
   @IsOptional()
   readonly name: string;
-  @ApiProperty({ example: '5A', description: 'Класс ученика' })
+  @ApiProperty({ example: '5A', description: 'Класс пользователя' })
   @IsString({ message: 'Должно быть строкой' })
   @IsOptional()
   readonly userClass: string;
