@@ -15,16 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SubjectsService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
-const users_model_1 = require("../users/users.model");
 const users_service_1 = require("../users/users.service");
 const subjects_model_1 = require("./subjects.model");
 const user_subjects_model_1 = require("./user-subjects.model");
 let SubjectsService = class SubjectsService {
-    constructor(subjectsRepository, userService, userSubjectsRepository, userRepository) {
+    constructor(subjectsRepository, userService, userSubjectsRepository) {
         this.subjectsRepository = subjectsRepository;
         this.userService = userService;
         this.userSubjectsRepository = userSubjectsRepository;
-        this.userRepository = userRepository;
     }
     async getAllSubjects() {
         const subjects = await this.subjectsRepository.findAll();
@@ -58,8 +56,7 @@ SubjectsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, sequelize_1.InjectModel)(subjects_model_1.Subject)),
     __param(2, (0, sequelize_1.InjectModel)(user_subjects_model_1.UserSubjects)),
-    __param(3, (0, sequelize_1.InjectModel)(users_model_1.User)),
-    __metadata("design:paramtypes", [Object, users_service_1.UsersService, Object, Object])
+    __metadata("design:paramtypes", [Object, users_service_1.UsersService, Object])
 ], SubjectsService);
 exports.SubjectsService = SubjectsService;
 //# sourceMappingURL=subjects.service.js.map

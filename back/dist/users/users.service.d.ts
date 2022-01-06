@@ -1,5 +1,6 @@
 import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
 import { RolesService } from 'src/roles/roles.service';
+import { UserRoles } from 'src/roles/user-roles.model';
 import { ChangeUserGradeDto } from 'src/subjects/dto/change-user-grade-dto';
 import { UserSubjects } from 'src/subjects/user-subjects.model';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -8,7 +9,8 @@ export declare class UsersService {
     private userRepository;
     private roleService;
     private userSubjectsRepository;
-    constructor(userRepository: typeof User, roleService: RolesService, userSubjectsRepository: typeof UserSubjects);
+    private userRolesRepository;
+    constructor(userRepository: typeof User, roleService: RolesService, userSubjectsRepository: typeof UserSubjects, userRolesRepository: typeof UserRoles);
     createUser(dto: CreateUserDto): Promise<User>;
     getAllUsers(): Promise<User[]>;
     getUserByEmail(email: string): Promise<User>;

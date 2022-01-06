@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { Roles } from 'src/auth/roles-auth-decorator';
@@ -17,7 +25,7 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @ApiOperation({ summary: 'Создание пользователя' })
-  @ApiResponse({ status: 200, type: User })
+  @ApiResponse({ status: 201, type: User })
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Post()
@@ -28,6 +36,19 @@ export class UsersController {
   @ApiOperation({ summary: 'Получить информацию о пользователе по email' })
   @ApiResponse({
     status: 200,
+    schema: {
+      properties: {
+        role: {
+          type: 'string',
+        },
+        name: {
+          type: 'string',
+        },
+        userClass: {
+          type: 'string',
+        },
+      },
+    },
   })
   @Get('about/:email')
   getUserInfoByEmail(@Param() params) {
@@ -39,6 +60,19 @@ export class UsersController {
   })
   @ApiResponse({
     status: 200,
+    schema: {
+      properties: {
+        id: {
+          type: 'number',
+        },
+        name: {
+          type: 'string',
+        },
+        role: {
+          type: 'string',
+        },
+      },
+    },
   })
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
@@ -47,25 +81,70 @@ export class UsersController {
     return this.usersService.getTeacherAndStudent();
   }
 
+  @ApiOperation({
+    summary: 'Получение оценок учеников',
+  })
+  @ApiResponse({
+    status: 200,
+    schema: {
+      properties: {
+        id: {
+          type: 'number',
+        },
+        name: {
+          type: 'string',
+        },
+        grade: {
+          type: 'object',
+        },
+      },
+    },
+  })
   @Get('usersClass/:class/:subject')
   getStudentsGrade(@Param() params) {
     return this.usersService.getStudentsGrade(params.class, params.subject);
   }
 
   @ApiOperation({
-    summary: 'Выдача роли, пользователю',
+    summary: 'Смена роли у пользователя',
   })
   @ApiResponse({
     status: 200,
+    schema: {
+      properties: {
+        role: {
+          type: 'string',
+        },
+        id: {
+          type: 'number',
+        },
+      },
+    },
   })
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
-  @Post('role')
+  @Patch('role')
   changeUserRole(@Body() changeRoleDto: ChangeRoleDto) {
     return this.usersService.changeUserRole(changeRoleDto);
   }
 
-  @Post('grade')
+  @ApiOperation({
+    summary: 'Смена оценок у пользователя',
+  })
+  @ApiResponse({
+    status: 200,
+    schema: {
+      properties: {
+        id: {
+          type: 'number',
+        },
+        grade: {
+          type: 'object',
+        },
+      },
+    },
+  })
+  @Patch('grade')
   @Roles('TEACHER')
   @UseGuards(RolesGuard)
   changeUserGrade(@Body() ChangeUserGradeDto: ChangeUserGradeDto) {

@@ -29,6 +29,17 @@ let AuthController = class AuthController {
     }
 };
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Войти в аккаунт' }),
+    (0, swagger_1.ApiResponse)({
+        status: 201,
+        schema: {
+            properties: {
+                token: {
+                    type: 'string',
+                },
+            },
+        },
+    }),
     (0, common_1.Post)('/login'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -36,6 +47,17 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "login", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Зарегистрировать аккаунт' }),
+    (0, swagger_1.ApiResponse)({
+        status: 201,
+        schema: {
+            properties: {
+                token: {
+                    type: 'string',
+                },
+            },
+        },
+    }),
     (0, common_1.Post)('/registration'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),

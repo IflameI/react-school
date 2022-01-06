@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 
 import { ChangeRoleDto } from 'src/roles/dto/change-role-dto';
 import { RolesService } from 'src/roles/roles.service';
+import { UserRoles } from 'src/roles/user-roles.model';
 import { ChangeUserGradeDto } from 'src/subjects/dto/change-user-grade-dto';
 import { UserSubjects } from 'src/subjects/user-subjects.model';
 
@@ -17,6 +18,8 @@ export class UsersService {
     private roleService: RolesService,
     @InjectModel(UserSubjects)
     private userSubjectsRepository: typeof UserSubjects,
+    @InjectModel(UserRoles)
+    private userRolesRepository: typeof UserRoles,
   ) {}
 
   async createUser(dto: CreateUserDto) {
@@ -82,12 +85,17 @@ export class UsersService {
   }
 
   async changeUserRole(dto: ChangeRoleDto) {
-    //need refactor
     const user = await this.userRepository.findByPk(dto.id);
     const role = await this.roleService.getRoleByValue(dto.role);
-    if (role && user) {
-      await user.$set('roles', [role.id]);
-      user.roles = [role];
+
+    let userRole = await this.userRolesRepository.findOne({
+      where: { userId: user.id },
+    });
+
+    if (user && role) {
+      userRole.roleId = role.id;
+      userRole.save();
+
       return dto;
     }
     throw new HttpException(
@@ -101,7 +109,7 @@ export class UsersService {
     const user = await this.userRepository.findByPk(dto.userId, {
       include: { all: true },
     });
-    let subject = user.subjects.filter(
+    const subject = user.subjects.filter(
       (item) => item.subjectName === dto.subjectName,
     );
     let userGrade = await this.userSubjectsRepository.findOne({

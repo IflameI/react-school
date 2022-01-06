@@ -47,7 +47,7 @@ let UsersController = class UsersController {
 };
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Создание пользователя' }),
-    (0, swagger_1.ApiResponse)({ status: 200, type: users_model_1.User }),
+    (0, swagger_1.ApiResponse)({ status: 201, type: users_model_1.User }),
     (0, roles_auth_decorator_1.Roles)('ADMIN'),
     (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
     (0, common_1.Post)(),
@@ -60,6 +60,19 @@ __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Получить информацию о пользователе по email' }),
     (0, swagger_1.ApiResponse)({
         status: 200,
+        schema: {
+            properties: {
+                role: {
+                    type: 'string',
+                },
+                name: {
+                    type: 'string',
+                },
+                userClass: {
+                    type: 'string',
+                },
+            },
+        },
     }),
     (0, common_1.Get)('about/:email'),
     __param(0, (0, common_1.Param)()),
@@ -73,6 +86,19 @@ __decorate([
     }),
     (0, swagger_1.ApiResponse)({
         status: 200,
+        schema: {
+            properties: {
+                id: {
+                    type: 'number',
+                },
+                name: {
+                    type: 'string',
+                },
+                role: {
+                    type: 'string',
+                },
+            },
+        },
     }),
     (0, roles_auth_decorator_1.Roles)('ADMIN'),
     (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
@@ -82,6 +108,25 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getTeacherAndStudent", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({
+        summary: 'Получение оценок учеников',
+    }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        schema: {
+            properties: {
+                id: {
+                    type: 'number',
+                },
+                name: {
+                    type: 'string',
+                },
+                grade: {
+                    type: 'object',
+                },
+            },
+        },
+    }),
     (0, common_1.Get)('usersClass/:class/:subject'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
@@ -90,21 +135,47 @@ __decorate([
 ], UsersController.prototype, "getStudentsGrade", null);
 __decorate([
     (0, swagger_1.ApiOperation)({
-        summary: 'Выдача роли, пользователю',
+        summary: 'Смена роли у пользователя',
     }),
     (0, swagger_1.ApiResponse)({
         status: 200,
+        schema: {
+            properties: {
+                role: {
+                    type: 'string',
+                },
+                id: {
+                    type: 'number',
+                },
+            },
+        },
     }),
     (0, roles_auth_decorator_1.Roles)('ADMIN'),
     (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
-    (0, common_1.Post)('role'),
+    (0, common_1.Patch)('role'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [change_role_dto_1.ChangeRoleDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "changeUserRole", null);
 __decorate([
-    (0, common_1.Post)('grade'),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Смена оценок у пользователя',
+    }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        schema: {
+            properties: {
+                id: {
+                    type: 'number',
+                },
+                grade: {
+                    type: 'object',
+                },
+            },
+        },
+    }),
+    (0, common_1.Patch)('grade'),
     (0, roles_auth_decorator_1.Roles)('TEACHER'),
     (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
     __param(0, (0, common_1.Body)()),

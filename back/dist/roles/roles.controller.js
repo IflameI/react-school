@@ -14,7 +14,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RolesController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
+const roles_auth_decorator_1 = require("../auth/roles-auth-decorator");
+const roles_guard_1 = require("../auth/roles.guard");
 const create_role_dto_1 = require("./dto/create-role-dto");
+const roles_model_1 = require("./roles.model");
 const roles_service_1 = require("./roles.service");
 let RolesController = class RolesController {
     constructor(roleService) {
@@ -23,14 +27,15 @@ let RolesController = class RolesController {
     create(dto) {
         return this.roleService.createRole(dto);
     }
-    getByValue(value) {
-        return this.roleService.getRoleByValue(value);
-    }
     getAllRoles() {
         return this.roleService.getAllRoles();
     }
 };
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Создать роль' }),
+    (0, swagger_1.ApiResponse)({ status: 201, type: create_role_dto_1.CreateRoleDto }),
+    (0, roles_auth_decorator_1.Roles)('ADMIN'),
+    (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -38,19 +43,15 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], RolesController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)('/:value'),
-    __param(0, (0, common_1.Param)('value')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], RolesController.prototype, "getByValue", null);
-__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Получить все существующие роли' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: roles_model_1.Role }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], RolesController.prototype, "getAllRoles", null);
 RolesController = __decorate([
+    (0, swagger_1.ApiTags)('Роли пользователей'),
     (0, common_1.Controller)('roles'),
     __metadata("design:paramtypes", [roles_service_1.RolesService])
 ], RolesController);

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { User } from 'src/users/users.model';
+
 import { UsersService } from 'src/users/users.service';
 import { Subject } from './subjects.model';
 import { UserSubjects } from './user-subjects.model';
@@ -12,8 +12,6 @@ export class SubjectsService {
     private userService: UsersService,
     @InjectModel(UserSubjects)
     private userSubjectsRepository: typeof UserSubjects,
-    @InjectModel(User)
-    private userRepository: typeof User,
   ) {}
 
   async getAllSubjects() {

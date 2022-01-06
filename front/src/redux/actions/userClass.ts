@@ -63,7 +63,7 @@ export const setChangeUserRole = (roleData: userChangeRoleType) => {
   return async (dispatch: Dispatch<userClassActions>) => {
     try {
       dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: true });
-      const response = await axios.post(`users/role`, roleData, {
+      const response = await axios.patch(`users/role`, roleData, {
         headers: {
           Authorization: 'Bearer ' + window.localStorage.BearerSchool,
         },
@@ -86,7 +86,7 @@ export const setChangeUserGrade = (gradeData: userChangeGradeType) => {
   return async (dispatch: Dispatch<userClassActions>) => {
     try {
       dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: true });
-      const response = await axios.post(`users/grade`, gradeData, {
+      const response = await axios.patch(`users/grade`, gradeData, {
         headers: {
           Authorization: 'Bearer ' + window.localStorage.BearerSchool,
         },

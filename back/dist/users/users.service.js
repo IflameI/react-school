@@ -17,14 +17,16 @@ const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const change_role_dto_1 = require("../roles/dto/change-role-dto");
 const roles_service_1 = require("../roles/roles.service");
+const user_roles_model_1 = require("../roles/user-roles.model");
 const change_user_grade_dto_1 = require("../subjects/dto/change-user-grade-dto");
 const user_subjects_model_1 = require("../subjects/user-subjects.model");
 const users_model_1 = require("./users.model");
 let UsersService = class UsersService {
-    constructor(userRepository, roleService, userSubjectsRepository) {
+    constructor(userRepository, roleService, userSubjectsRepository, userRolesRepository) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.userSubjectsRepository = userSubjectsRepository;
+        this.userRolesRepository = userRolesRepository;
     }
     async createUser(dto) {
         const user = await this.userRepository.create(dto);
@@ -82,9 +84,12 @@ let UsersService = class UsersService {
     async changeUserRole(dto) {
         const user = await this.userRepository.findByPk(dto.id);
         const role = await this.roleService.getRoleByValue(dto.role);
-        if (role && user) {
-            await user.$set('roles', [role.id]);
-            user.roles = [role];
+        let userRole = await this.userRolesRepository.findOne({
+            where: { userId: user.id },
+        });
+        if (user && role) {
+            userRole.roleId = role.id;
+            userRole.save();
             return dto;
         }
         throw new common_1.HttpException('Пользователь или роль не найдены', common_1.HttpStatus.NOT_FOUND);
@@ -94,7 +99,7 @@ let UsersService = class UsersService {
         const user = await this.userRepository.findByPk(dto.userId, {
             include: { all: true },
         });
-        let subject = user.subjects.filter((item) => item.subjectName === dto.subjectName);
+        const subject = user.subjects.filter((item) => item.subjectName === dto.subjectName);
         let userGrade = await this.userSubjectsRepository.findOne({
             where: { userId, subjectId: subject[0].id },
         });
@@ -113,7 +118,8 @@ UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, sequelize_1.InjectModel)(users_model_1.User)),
     __param(2, (0, sequelize_1.InjectModel)(user_subjects_model_1.UserSubjects)),
-    __metadata("design:paramtypes", [Object, roles_service_1.RolesService, Object])
+    __param(3, (0, sequelize_1.InjectModel)(user_roles_model_1.UserRoles)),
+    __metadata("design:paramtypes", [Object, roles_service_1.RolesService, Object, Object])
 ], UsersService);
 exports.UsersService = UsersService;
 //# sourceMappingURL=users.service.js.map
