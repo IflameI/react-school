@@ -37,10 +37,12 @@ export { default as Banners } from './Banners/Banners';
 export { default as Badge } from './Badge';
 export { default as NewsItem } from './NewsItem';
 
-export { default as CabinetTable } from './Cabinet/CabinetTable/CabinetTable';
+export { default as CabinetTable } from './Cabinet/CabinetTable/CabinetStudent/CabinetTable';
+export { default as CabinetItem } from './Cabinet/CabinetTable/CabinetStudent/CabinetItem';
+export { default as CabinetTableBody } from './Cabinet/CabinetTable/CabinetStudent/CabinetTableBody';
+
 export { default as CabinetTeacherTable } from './Cabinet/CabinetTable/CabinetTeacher/CabinetTeacherTable';
 export { default as CabinetTeacherTableBody } from './Cabinet/CabinetTable/CabinetTeacher/CabinetTeacherTableBody';
-export { default as CabinetItem } from './Cabinet/CabinetTable/CabinetItem';
 export { default as CabinetTeacherItem } from './Cabinet/CabinetTable/CabinetTeacher/CabinetTeacherItem';
 export { default as CabinetTeacherGradeItem } from './Cabinet/CabinetTable/CabinetTeacher/CabinetTeacherGradeItem';
 

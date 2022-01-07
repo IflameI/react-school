@@ -13,29 +13,33 @@ const CabinetTeacherTableBody: React.FC = () => {
   useEffect(() => {
     getStudents(dataUser.userClass, 'Физика');
   }, []);
+
   return (
-    <tbody className='cabinet__tbody'>
+    <>
       {isLoader ? (
-        <div className='admin__loader'>
+        <span className='admin__loader'>
           <Loader />
-        </div>
+        </span>
       ) : (
-        userClassData.map(
-          (item, index) =>
-            item.grade && (
-              <CabinetTeacherItem
-                hiddenId={item.id}
-                visibleId={index + 1}
-                name={item.name}
-                gradeOne={item.grade.UserSubjects.gradeFirstPer}
-                gradeTwo={item.grade.UserSubjects.gradeSecondPer}
-                gradeThree={item.grade.UserSubjects.gradeThirdPer}
-                gradeFour={item.grade.UserSubjects.gradeFourPer}
-              />
-            ),
-        )
+        <tbody className='cabinet__tbody'>
+          {userClassData.map(
+            (item, index) =>
+              item.grade && (
+                <CabinetTeacherItem
+                  hiddenId={item.id}
+                  key={item.id + 'key'}
+                  visibleId={index + 1}
+                  name={item.name}
+                  gradeOne={item.grade.UserSubjects.gradeFirstPer}
+                  gradeTwo={item.grade.UserSubjects.gradeSecondPer}
+                  gradeThree={item.grade.UserSubjects.gradeThirdPer}
+                  gradeFour={item.grade.UserSubjects.gradeFourPer}
+                />
+              ),
+          )}
+        </tbody>
       )}
-    </tbody>
+    </>
   );
 };
 

@@ -38,6 +38,9 @@ let UsersController = class UsersController {
     getStudentsGrade(params) {
         return this.usersService.getStudentsGrade(params.class, params.subject);
     }
+    getStudentGrade(params) {
+        return this.usersService.getStudentGrade(params.userId);
+    }
     changeUserRole(changeRoleDto) {
         return this.usersService.changeUserRole(changeRoleDto);
     }
@@ -62,6 +65,9 @@ __decorate([
         status: 200,
         schema: {
             properties: {
+                id: {
+                    type: 'number',
+                },
                 role: {
                     type: 'string',
                 },
@@ -102,14 +108,14 @@ __decorate([
     }),
     (0, roles_auth_decorator_1.Roles)('ADMIN'),
     (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
-    (0, common_1.Get)('about'),
+    (0, common_1.Get)('adminCabinet'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getTeacherAndStudent", null);
 __decorate([
     (0, swagger_1.ApiOperation)({
-        summary: 'Получение оценок учеников',
+        summary: 'Получение оценок у  учеников',
     }),
     (0, swagger_1.ApiResponse)({
         status: 200,
@@ -127,12 +133,38 @@ __decorate([
             },
         },
     }),
-    (0, common_1.Get)('usersClass/:class/:subject'),
+    (0, common_1.Get)('teacherCabinet/:class/:subject'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getStudentsGrade", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({
+        summary: 'Получение всех оценок у ученика по id',
+    }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        schema: {
+            properties: {
+                id: {
+                    type: 'number',
+                },
+                name: {
+                    type: 'string',
+                },
+                grade: {
+                    type: 'object',
+                },
+            },
+        },
+    }),
+    (0, common_1.Get)('studentCabinet/:userId'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getStudentGrade", null);
 __decorate([
     (0, swagger_1.ApiOperation)({
         summary: 'Смена роли у пользователя',

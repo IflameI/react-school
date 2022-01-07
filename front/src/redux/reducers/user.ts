@@ -2,6 +2,7 @@ import { userActions, userActionsType, userInfo, userState } from '../types/user
 
 const initialState: Readonly<userState> = {
   dataUser: {
+    id: 0,
     role: '',
     name: '',
     userClass: '',

@@ -42,8 +42,10 @@ const CabinetTeacherGradeItem: React.FC<ICabinetTeacherGradeItem> = ({
         </span>
         <span className='admin__dropdown-content'>
           <ul>
-            {avaliableGrade.map((item) => (
-              <li onClick={() => onClickChangeGrade(item)}>{item}</li>
+            {avaliableGrade.map((item, index) => (
+              <li key={index + item} onClick={() => onClickChangeGrade(item)}>
+                {item}
+              </li>
             ))}
           </ul>
         </span>

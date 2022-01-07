@@ -4,6 +4,7 @@ export type authuserDataType = {
 };
 
 export type userInfo = {
+  id: number;
   name: string;
   role: string;
   userClass: string;

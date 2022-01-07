@@ -52,6 +52,7 @@ let UsersService = class UsersService {
             include: { all: true },
         });
         return {
+            id: user.id,
             role: user.roles[0].value,
             name: user.name,
             userClass: user.userClass,
@@ -71,6 +72,19 @@ let UsersService = class UsersService {
                 grade: filtredGrade[0],
             };
         });
+    }
+    async getStudentGrade(userId) {
+        const user = await this.userRepository.findOne({
+            where: { id: userId },
+            include: { all: true },
+        });
+        return [
+            {
+                id: user.id,
+                name: user.name,
+                subjects: user.subjects,
+            },
+        ];
     }
     async getTeacherAndStudent() {
         const user = await this.userRepository.findAll({

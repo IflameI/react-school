@@ -1,11 +1,11 @@
 const Loader: React.FC = () => {
   return (
-    <div className='lds-ring'>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <span className='lds-ring'>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
   );
 };
 

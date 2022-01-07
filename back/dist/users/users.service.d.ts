@@ -15,6 +15,7 @@ export declare class UsersService {
     getAllUsers(): Promise<User[]>;
     getUserByEmail(email: string): Promise<User>;
     getUserInfoByEmail(email: string): Promise<{
+        id: number;
         role: string;
         name: string;
         userClass: string;
@@ -23,6 +24,11 @@ export declare class UsersService {
         id: number;
         name: string;
         grade: import("../subjects/subjects.model").Subject;
+    }[]>;
+    getStudentGrade(userId: number): Promise<{
+        id: number;
+        name: string;
+        subjects: import("../subjects/subjects.model").Subject[];
     }[]>;
     getTeacherAndStudent(): Promise<{
         id: number;

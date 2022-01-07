@@ -38,6 +38,9 @@ export class UsersController {
     status: 200,
     schema: {
       properties: {
+        id: {
+          type: 'number',
+        },
         role: {
           type: 'string',
         },
@@ -76,13 +79,13 @@ export class UsersController {
   })
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
-  @Get('about')
+  @Get('adminCabinet')
   getTeacherAndStudent() {
     return this.usersService.getTeacherAndStudent();
   }
 
   @ApiOperation({
-    summary: 'Получение оценок учеников',
+    summary: 'Получение оценок у  учеников',
   })
   @ApiResponse({
     status: 200,
@@ -100,9 +103,33 @@ export class UsersController {
       },
     },
   })
-  @Get('usersClass/:class/:subject')
+  @Get('teacherCabinet/:class/:subject')
   getStudentsGrade(@Param() params) {
     return this.usersService.getStudentsGrade(params.class, params.subject);
+  }
+
+  @ApiOperation({
+    summary: 'Получение всех оценок у ученика по id',
+  })
+  @ApiResponse({
+    status: 200,
+    schema: {
+      properties: {
+        id: {
+          type: 'number',
+        },
+        name: {
+          type: 'string',
+        },
+        grade: {
+          type: 'object',
+        },
+      },
+    },
+  })
+  @Get('studentCabinet/:userId')
+  getStudentGrade(@Param() params) {
+    return this.usersService.getStudentGrade(params.userId);
   }
 
   @ApiOperation({

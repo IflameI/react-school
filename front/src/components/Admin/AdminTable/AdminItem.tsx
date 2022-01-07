@@ -23,7 +23,7 @@ const AdminItem: React.FC<IAdminItem> = ({ visibleId, hiddenId, name, role }) =>
     (avaliableRole) => avaliableRole.value !== role && avaliableRole.value !== 'ADMIN',
   );
 
-  const onClickChangeRole = (role: string) => {
+  const onClickChangeRole = (role: string) => () => {
     setChangeUserRole({ id: hiddenId, role });
   };
 
@@ -45,7 +45,9 @@ const AdminItem: React.FC<IAdminItem> = ({ visibleId, hiddenId, name, role }) =>
           <span className='admin__dropdown-content'>
             <ul>
               {avaliableUserRoles.map((item) => (
-                <li onClick={() => onClickChangeRole(item.value)}>{item.value}</li>
+                <li key={item.id + 'key'} onClick={onClickChangeRole(item.value)}>
+                  {item.value}
+                </li>
               ))}
             </ul>
           </span>

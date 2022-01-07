@@ -8,6 +8,7 @@ export declare class UsersController {
     constructor(usersService: UsersService);
     create(userDto: CreateUserDto): Promise<User>;
     getUserInfoByEmail(params: any): Promise<{
+        id: number;
         role: string;
         name: string;
         userClass: string;
@@ -21,6 +22,11 @@ export declare class UsersController {
         id: number;
         name: string;
         grade: import("../subjects/subjects.model").Subject;
+    }[]>;
+    getStudentGrade(params: any): Promise<{
+        id: number;
+        name: string;
+        subjects: import("../subjects/subjects.model").Subject[];
     }[]>;
     changeUserRole(changeRoleDto: ChangeRoleDto): Promise<ChangeRoleDto>;
     changeUserGrade(ChangeUserGradeDto: ChangeUserGradeDto): Promise<{

@@ -42,8 +42,9 @@ const CabinetTeacherItem: React.FC<ICabinetTeacherItem> = ({
     <tr>
       <td>{visibleId}</td>
       <td>{name}</td>
-      {allGrade.map((item) => (
+      {allGrade.map((item, index) => (
         <CabinetTeacherGradeItem
+          key={index + visibleId}
           grade={item.periodValue}
           namePeriod={item.periodName}
           hiddenId={hiddenId}

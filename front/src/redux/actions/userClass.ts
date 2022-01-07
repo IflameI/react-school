@@ -12,7 +12,7 @@ export const getTeacherAndStudent = () => {
   return async (dispatch: Dispatch<userClassActions>) => {
     try {
       dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: true });
-      const response = await axios.get(`users/about`, {
+      const response = await axios.get(`users/adminCabinet`, {
         headers: {
           Authorization: 'Bearer ' + window.localStorage.BearerSchool,
         },
@@ -45,7 +45,25 @@ export const getStudents = (userClass: string, subject: string) => {
   return async (dispatch: Dispatch<userClassActions>) => {
     try {
       dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: true });
-      const response = await axios.get(`users/usersClass/${userClass}/${subject}`);
+      const response = await axios.get(`users/teacherCabinet/${userClass}/${subject}`);
+      dispatch({
+        type: userClassActionsType.SET_DATA_USER_CLASS,
+        payload: response.data,
+      });
+      dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: false });
+      return response;
+    } catch (e) {
+      dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: false });
+      console.error(`Произошла ошибка` + e);
+    }
+  };
+};
+
+export const getUserGrade = (userId: number) => {
+  return async (dispatch: Dispatch<userClassActions>) => {
+    try {
+      dispatch({ type: userClassActionsType.SET_LOADER_USER_CLASS, payload: true });
+      const response = await axios.get(`users/studentCabinet/${userId}`);
       dispatch({
         type: userClassActionsType.SET_DATA_USER_CLASS,
         payload: response.data,

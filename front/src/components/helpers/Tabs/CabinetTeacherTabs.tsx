@@ -22,6 +22,7 @@ const CabinetTeacherTabs: React.FC = () => {
           subjectsData.map((item) => (
             <CabinetTeacherTab
               activeTab={activeTab}
+              key={item.id + 'key'}
               setActiveTab={setActiveTab}
               name={item.subjectName}
             />

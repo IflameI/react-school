@@ -17,6 +17,7 @@ type userClassItem = {
   name: string;
   role: string;
   grade: subjectType;
+  subjects?: subjectType[];
 };
 
 type avaliableRolesType = {
@@ -71,7 +72,7 @@ interface setChangeRoleUserClassType {
 interface setChangeGradeUserClassType {
   type: userClassActionsType.SET_CHANGE_GRADE_USER_CLASS;
   id: number;
-  grade: any;
+  grade: subjectType;
 }
 
 export type userClassActions =
